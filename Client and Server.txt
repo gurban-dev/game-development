@@ -1,0 +1,9 @@
+In game development, the term "Client Side" refers to all the
+operations and activities that occur on the player's machine,
+which could be a console, computer, or even a phone. The client
+side is responsible for rendering graphics, handling input from
+the user and sometimes processing game logic.
+
+This is in contrast to the server-side operations, which involve
+handling multiplayer connections and synchronizing game states
+among multiple clients.
