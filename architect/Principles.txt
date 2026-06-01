@@ -1,0 +1,52 @@
+Configuration Belongs in One Place
+
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+
+clock = pygame.time.Clock()
+
+If you have a game project that grows to 50 files, and you want
+to change the screen resolution, it's easier to do it in one
+file rather than 20.
+
+These values are not game logic because:
+• They don't describe the player.
+• They don't describe the enemies.
+• They don't describe bullets.
+
+These are configuration values.
+
+Configuration answers questions like:
+• How large is the window?
+• How many frames per second should the game run?
+• What settings should the game use?
+
+======================================================
+
+Entities Store Data
+
+player_x = 400
+player_y = 300
+player_speed = 5
+
+Question:
+What is this code doing?
+Is it moving the player?
+Is it rendering the player?
+
+Answer:
+It's simply describing the player.
+
+An entity's responsibility is to store state.
+
+State means information about an object.
+
+For a player, state might be:
+• Position
+• Speed
+• Health
+
+In scalable architecture, data should be separated from behaviour.
+
+The player entity becomes the container that stores the player
+information.

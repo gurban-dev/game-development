@@ -14,7 +14,7 @@ import pygame
 # terminate the program cleanly using sys.exit().
 import sys
 
-# Initialiases all imported Pygame modules.
+# Initialise all imported Pygame modules.
 pygame.init()
 
 # Establish the window dimensions in pixels.
@@ -31,8 +31,8 @@ HEIGHT = 600
 # A Surface is an area of memory that represents pixels.
 # Everything is drawn onto this surface.
 
-# WIDTH and HEIGHT are are passed to the set_mode() function
-# in a tuple because Pygame expts width and height as a pair.
+# WIDTH and HEIGHT are passed to the set_mode() function
+# in a tuple because Pygame expects width and height as a pair.
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Set the title shown in the window's title bar.
@@ -67,6 +67,34 @@ player_speed = 5
 # Create the main game loop.
 running = True
 
+# Remember that the expression written in a while clause should
+# be descriptive in the sense that it makes it clear what
+# condition must be True for the block of code to run.
 while running:
     # Event processing.
-    pass
+    
+    # Check for all incoming events.
+    for event in pygame.event.get():
+
+        # Check if the user has closed their window.
+        if event.type == pygame.QUIT:
+            running = False
+    
+    # Fill the screen with black.
+    screen.fill((0, 0, 0))
+
+    # Update the display.
+    pygame.display.update()
+
+# Shut down pygame cleanly.
+
+# The word "cleanly" in this context means properly closing
+# and releasing all of the resources that Pygame was using.
+
+# The game window.
+# Internal pygame modules.
+# Keyboard/mouse handling.
+pygame.quit()
+
+# Exit the Python process itself.
+sys.exit()

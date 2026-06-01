@@ -5,5 +5,5 @@ side is responsible for rendering graphics, handling input from
 the user and sometimes processing game logic.
 
 This is in contrast to the server-side operations, which involve
-handling multiplayer connections and synchronizing game states
+handling multiplayer connections and synchronising game states
 among multiple clients.

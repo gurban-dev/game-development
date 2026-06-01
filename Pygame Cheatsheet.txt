@@ -1,0 +1,249 @@
+Common Pygame Methods And Where They Belong
+===========================================
+
+IMPORTS
+-------
+import pygame
+
+Description:
+Imports the pygame library so you can use its tools.
+
+
+INITIALISATION
+--------------
+pygame.init()
+
+Description:
+Starts all pygame systems such as graphics, sound,
+keyboard input and timing.
+
+Usually placed near the top of the program.
+
+
+WINDOW CREATION
+---------------
+screen = pygame.display.set_mode((800, 600))
+
+Create the game window.
+screen = pygame.display.set_mode(
+    (
+        800,
+        600
+    )
+)
+
+800 is the window width in pixels.
+600 is the window height in pixels.
+
+Description:
+Creates the game window.
+
+Arguments:
+(width, height)
+
+Usually placed after pygame.init().
+
+
+WINDOW TITLE
+------------
+pygame.display.set_caption("My Game")
+
+Description:
+Sets the title shown at the top of the window.
+
+Usually placed after creating the window.
+
+
+CLOCK CREATION
+--------------
+clock = pygame.time.Clock()
+
+Description:
+Creates a clock object used to control FPS.
+
+Usually placed before the main game loop.
+
+
+EVENT HANDLING
+--------------
+pygame.event.get()
+
+Description:
+Gets all current events such as:
+- Keyboard input
+- Mouse input
+- Window closing
+
+Usually placed inside the main game loop.
+
+
+QUIT EVENT
+----------
+if event.type == pygame.QUIT:
+
+Description:
+Checks whether the player closed the window.
+
+Usually placed inside the event loop.
+
+
+KEYBOARD INPUT
+--------------
+keys = pygame.key.get_pressed()
+
+Description:
+Checks which keyboard keys are currently being held down.
+
+Usually placed inside the main game loop.
+
+
+SCREEN FILL
+-----------
+screen.fill((0, 0, 0))
+
+Description:
+Fills the entire screen with a color.
+
+Usually placed before drawing objects each frame.
+
+
+DRAW RECTANGLE
+--------------
+pygame.draw.rect(screen, color, (x, y, width, height))
+
+Description:
+Draws a rectangle on the screen.
+
+Usually placed in the drawing section of the loop.
+
+
+DRAW CIRCLE
+-----------
+pygame.draw.circle(screen, color, (x, y), radius)
+
+Description:
+Draws a circle on the screen.
+
+Usually placed in the drawing section.
+
+
+DRAW LINE
+---------
+pygame.draw.line(screen, color, start_pos, end_pos, width)
+
+Description:
+Draws a line between two points.
+
+Usually placed in the drawing section.
+
+
+UPDATE DISPLAY
+--------------
+pygame.display.update()
+
+Description:
+Refreshes the screen so new drawings become visible.
+
+Usually placed at the end of the game loop.
+
+
+FPS CONTROL
+-----------
+clock.tick(60)
+
+Description:
+Limits the game to 60 frames per second.
+
+Usually placed at the bottom of the game loop.
+
+
+IMAGE LOADING
+-------------
+pygame.image.load("player.png")
+
+Description:
+Loads an image file into memory.
+
+Usually placed before the game loop.
+
+
+DRAW IMAGE
+----------
+screen.blit(image, (x, y))
+
+Description:
+Draws an image onto the screen.
+
+Usually placed in the drawing section.
+
+
+SOUND EFFECT
+------------
+pygame.mixer.Sound("jump.wav")
+
+Description:
+Loads a sound effect.
+
+Usually placed before the game loop.
+
+
+PLAY SOUND
+----------
+sound.play()
+
+Description:
+Plays a loaded sound effect.
+
+Usually triggered during gameplay events.
+
+
+BACKGROUND MUSIC
+----------------
+pygame.mixer.music.load("music.mp3")
+pygame.mixer.music.play(-1)
+
+Description:
+Loads and plays background music.
+
+-1 means loop forever.
+
+Usually placed before the game loop starts.
+
+
+RECTANGLE COLLISION
+-------------------
+player.colliderect(enemy)
+
+Description:
+Checks whether two rectangles overlap.
+
+Usually placed in the update logic section.
+
+
+QUIT PYGAME
+------------
+pygame.quit()
+
+Description:
+Shuts down pygame systems cleanly.
+
+Usually placed after the game loop ends.
+
+
+TYPICAL PROGRAM STRUCTURE
+-------------------------
+1. Import pygame.
+2. Initialise pygame.
+3. Create window.
+4. Create clock.
+5. Load images/sounds.
+6. Create variables.
+7. Start game loop.
+    a. Handle events.
+    b. Read input.
+    c. Update game state.
+    d. Draw everything.
+    e. Update display.
+    f. Control FPS.
+8. Quit pygame.
+"""

@@ -1,0 +1,17 @@
+Game programming is different from a standard script.
+
+A game constantly runs in a loop.
+
+The structure usually takes the form of:
+
+1. Initialise
+
+2. Game loop
+       Handle Input
+       Update Game States
+       Draw Graphics
+
+3. Quit
+
+This is called the game loop.
+Without the game loop, nothing moves or updates.

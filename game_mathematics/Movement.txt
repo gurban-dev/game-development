@@ -1,0 +1,27 @@
+
+In games, movement is usually:
+
+new position = old position + velocity
+
+This means that position changes every frame.
+
+Explanation:
+
+x = 100
+velocity = 5
+
+Every frame:
+x += velocity
+
+'x' represents the horizontal position.
+
+A frame is one complete screen update.
+
+Movement happens because position changes every frame.
+
+Result:
+Frame 1 -> 105
+Frame 2 -> 110
+Frame 3 -> 115
+
+The object in the game moves continously to the right.
