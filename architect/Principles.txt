@@ -21,7 +21,10 @@ Configuration answers questions like:
 • How many frames per second should the game run?
 • What settings should the game use?
 
-======================================================
+Objects such as pygame.time.Clock() help implement those
+settings, but are not configuration values themselves.
+
+===========================================================
 
 Entities Store Data
 
@@ -46,7 +49,9 @@ For a player, state might be:
 • Speed
 • Health
 
-In scalable architecture, data should be separated from behaviour.
+In many scalable architectures, the entity itself does not move
+or render the player. Instead, it stores data that movement and
+rendering systems use.
 
-The player entity becomes the container that stores the player
-information.
+In many scalable architectures, data and behaviour are separated
+so that each part of the program has a clear responsibility.
