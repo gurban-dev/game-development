@@ -31,6 +31,8 @@ HEIGHT = 600
 # A Surface is an area of memory that represents pixels.
 # Everything is drawn onto this surface.
 
+# 'screen' can be thought of as a canvas.
+
 # WIDTH and HEIGHT are passed to the set_mode() function
 # in a tuple because Pygame expects width and height as a pair.
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -79,11 +81,37 @@ while running:
         # Check if the user has closed their window.
         if event.type == pygame.QUIT:
             running = False
-    
-    # Fill the screen with black.
+
+    # Fill the entire screen with black.
     screen.fill((0, 0, 0))
 
-    # Update the display.
+    # Rect is a class provided by Pygame.
+
+    # It represents a rectangle using:
+    # (x, y, width, height)
+
+    rectangle_width = WIDTH - 50
+    recetangle_height = HEIGHT - 50
+
+    # Horizontally and vertically center the rectangle.
+
+    # rectangle_x = 25
+    rectangle_x = (WIDTH - rectangle_width) // 2
+
+    # rectangle_y = 25
+    rectangle_y = (HEIGHT - recetangle_height) // 2
+
+    wall_rect = pygame.Rect(rectangle_x, rectangle_y, rectangle_width, recetangle_height)
+
+    # Since 'screen' was passed as the first argument, this means
+    # that the rectangle will be drawn on the screen surface.
+    pygame.draw.rect(screen, (255, 255, 255), wall_rect)
+
+    # Update the display by refreshing the screen so the user can
+    # see any changes made during the current frame.
+
+    # In a game, a frame is a single cycle of a game loop.
+    # The current frame is the current cycle of the game loop.
     pygame.display.update()
 
 # Shut down pygame cleanly.
