@@ -67,5 +67,5 @@ while True:
             # Exits the program by terminating pygame.
             sys.exit()
     
-    # Update the screen and show any changes.
+    # Update the screen by showing any changes.
     pygame.display.update()
