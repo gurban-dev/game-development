@@ -39,8 +39,12 @@ while running:
     # The rectangle starts at x = 0 and y = 450.
     # It stretches across the entire width of the window.
     pygame.draw.rect(
+        # The rectangle will be drawn on the surface object.
         screen,
+
         GREEN,
+
+        # The rectangle is 800 pixels wide and 150 pixels in tall.
         (0, 450, 800, 150)
     )
 
@@ -91,11 +95,20 @@ while running:
     pygame.draw.circle(
         screen,
         YELLOW,
+
+        # 700 pixels is the x-coordinate.
+        # 100 pixels is the y-coordinate.
         (700, 100),
+
+        # Radius of 50 pixels.
         50
     )
 
     # Update the entire display so all drawings appear.
+
+    # When does .flip() need to be included?
+    # At the end of a game loop after the program has executed all
+    # of its drawing functions.
     pygame.display.flip()
 
 # Exit pygame.
