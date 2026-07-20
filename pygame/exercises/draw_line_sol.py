@@ -23,7 +23,7 @@ pygame.init()
 # Create the game window.
 screen = pygame.display.set_mode((800, 600))
 
-# Change the title shown at the top of the window.
+# Set the title shown at the top of the window.
 pygame.display.set_caption("Triangle Exercise - Solution")
 
 # Create some colors.
@@ -32,6 +32,11 @@ BLUE = (0, 100, 255)
 
 # Store the three corners of the triangle.
 top_point = (400, 150)
+
+# (0, 0) is the top-left corner of the screen.
+# Increasing X moves an object to the right.
+# Increasing Y moves an object down.
+
 bottom_left_point = (250, 400)
 bottom_right_point = (550, 400)
 
