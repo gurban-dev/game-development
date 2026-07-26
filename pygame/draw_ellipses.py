@@ -7,12 +7,22 @@ import sys
 # An ellipse is like a stretched or vertically squashed circle.
 
 # The syntax for pygame.draw.ellipse():
-# pygame.draw.ellipse(surface, color, rectangle)
+# pygame.draw.ellipse(surface, color, rectangle, line_width)
 
-# surface is where to draw (usually screen)
+# surface is the drawing area where the ellipse will appear.
+
 # color is the RGB color that the ellipse will be.
+
 # rectangle is an invisible rectangle that determines the
 # ellipse's position and size.
+
+
+# line_width: Controls how thick the border of the ellipse is.
+# 0 (the default) fills the entire ellipse with the chosen colour.
+
+# A number greater than 0, such as 1, 3, or 5, draws only the outline
+# around the ellipse instead of filling it. Larger numbers make the
+# outline thicker.
 
 # Start all pygame modules.
 pygame.init()
