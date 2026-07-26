@@ -10,7 +10,7 @@ import sys
 # pygame.draw.ellipse(surface, color, rectangle)
 
 # surface is where to draw (usually screen)
-# color is the RGB color.
+# color is the RGB color that the ellipse will be.
 # rectangle is an invisible rectangle that determines the
 # ellipse's position and size.
 
@@ -19,6 +19,9 @@ pygame.init()
 
 # Create the game window.
 screen = pygame.display.set_mode((800, 600))
+
+# 'screen' is assigned a Surface object which represents the
+# window in the Python program.
 
 # Set the title shown at the top of the window.
 pygame.display.set_caption("Drawing an Ellipse")
@@ -42,12 +45,24 @@ while True:
     # 300 is the width.
     # 150 is the height.
 
-    # Store the invisible rectangle that defines the ellipse.
+    # Begin drawing from 250 pixels to the right of the starting
+    # point and 200 pixels down from the starting point.
+
+    # Store the invisible rectangle that defines the boundaries
+    # of the ellipse.
     ellipse_rectangle = (250, 200, 300, 150)
+
+    # Unlike pygame.draw.circle(), .ellipse() does not accept
+    # a center value.
 
     # Pygame draws the ellipse inside this invisible rectangle,
     # which determines its position and size.
-    pygame.draw.ellipse(screen, BLUE, ellipse_rectangle)
+
+    # The second argument, BLUE, specifies the color the ellipse
+    # will be filled with.
+
+    # The fourth argument is the line width of the ellipse.
+    pygame.draw.ellipse(screen, BLUE, ellipse_rectangle, 10)
 
     # Check every event that has occurred.
     for event in pygame.event.get():
@@ -60,6 +75,9 @@ while True:
 
             # Exit the Python program.
             sys.exit()
+
+    # Use pygame.display.update() when only a region of the screen
+    # needs to be updated.
 
     # Update the entire display since the entire screen is
     # redrawn every frame.

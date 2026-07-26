@@ -18,6 +18,8 @@ pygame.display.set_caption("Rectangles")
 # • Walls
 # • Collision detection
 
+BLUE = (0, 0, 255)
+
 # Creating a Rect requires the following:
 
 # Position of the rectangle
@@ -29,7 +31,7 @@ height = 100
 
 # A rectangle could be drawn like this:
 
-# pygame.draw.rect(screen, "blue", (100, 50, 200, 100))
+# pygame.draw.rect(screen, BLUE, (100, 50, 200, 100))
 
 # However, creating a Rect object gives us many useful attributes
 # and methods, making it much easier to work with rectangles.
@@ -48,7 +50,7 @@ blue_rect = pygame.Rect(x_pos, y_pos, width, height)
 # pygame.draw.rect() accepts either:
 # • A tuple containing (x, y, width, height)
 # • A Rect object
-pygame.draw.rect(screen, "blue", blue_rect)
+pygame.draw.rect(screen, BLUE, blue_rect)
 
 # The left attribute represents the x-coordinate of the rectangle's
 # left edge.
