@@ -52,7 +52,8 @@ while running:
     # slightly farther to the right.
     square_x_pos += 1
 
-    # Update the display so the new frame becomes visible.
+    # Update the entire display window by copying every pixel from
+    # the display surface to the screen.
     pygame.display.flip()
 
 # Shut down all of Pygame's modules.

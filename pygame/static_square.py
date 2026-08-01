@@ -37,7 +37,8 @@ while running:
     # 100 is the height.
     pygame.draw.rect(screen, "blue", (100, 250, 100, 100))
 
-    # Show everything we've drawn during this frame.
+    # Update the entire display window by making everything drawn
+    # since the last update was visible on the screen.
     pygame.display.flip()
 
 pygame.quit()
