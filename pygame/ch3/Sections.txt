@@ -1,0 +1,3 @@
+Section 1: Nested for Loops and Grids
+Lesson: grid_with_nested_loops.py
+Exercise: nested_loops_grid_ex.py

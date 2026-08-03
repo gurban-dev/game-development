@@ -27,3 +27,11 @@ Comprehensive Exercise: draw_shapes_ex.py
 Section 8: Creating Animation
 Lessons: static_square.py, moving_square.py, frames_per_second.py
 Exercise: edge_detection_ex.py
+
+Section 9: Working with Images and Animation
+Lesson: loading_and_moving_images.py
+Exercise: images_and_animation_ex.py
+
+Section 10: Working with Text and Audio
+Lesson: fonts_and_sounds.py
+Exercise: font_render_sound_ex.py
