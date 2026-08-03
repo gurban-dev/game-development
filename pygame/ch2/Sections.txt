@@ -1,0 +1,29 @@
+Section 1: Getting Started with Pygame
+Lessons: pygame_intro.py, pygame_basics.py
+Exercise: pygame_basics_ex.py
+
+Section 2: Working with Colours
+Lesson: colours.py
+Exercise: colours_ex.py
+
+Section 3: Drawing Basic Shapes
+Lessons: draw_rect.py, draw_circle.py
+Exercise: rect_circle_ex.py
+
+Section 4: Drawing Lines
+Lesson: draw_line.py
+Exercise: draw_line_ex.py
+
+Section 5: Drawing Polygons
+Lesson: draw_polygons.py
+Exercise: draw_decagon_sol.py
+
+Section 6: Drawing Ellipses
+Lesson: draw_ellipses.py
+Exercise: draw_ellipses_ex.py
+
+Comprehensive Exercise: draw_shapes_ex.py
+
+Section 8: Creating Animation
+Lessons: static_square.py, moving_square.py, frames_per_second.py
+Exercise: edge_detection_ex.py
