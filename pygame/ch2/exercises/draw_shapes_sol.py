@@ -91,5 +91,5 @@ while True:
     pygame.draw.ellipse(screen, GREEN, (350, 490, 100, 22))
     pygame.draw.ellipse(screen, GREEN, (370, 518, 60, 14))
 
-    # Update the display so the user can see what has been draw.
+    # Update the entire display or just selected parts of the display.
     pygame.display.update()

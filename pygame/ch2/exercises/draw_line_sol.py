@@ -88,5 +88,6 @@ while True:
             # Exit the Python program.
             sys.exit()
 
-    # Update the display so the latest drawing appears on the screen.
+    # Update the entire display, unlike .update() which can
+    # update specific regions.
     pygame.display.flip()

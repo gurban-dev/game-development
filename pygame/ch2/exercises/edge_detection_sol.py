@@ -20,7 +20,7 @@ clock = pygame.time.Clock()
 square_x = 0
 
 # Store how many pixels the square moves every frame.
-#
+
 # Positive values move the square to the right.
 # Negative values move the square to the left.
 speed = 5
@@ -67,8 +67,11 @@ while True:
     # Draw the square at its current position.
     pygame.draw.rect(screen, GREEN, (square_x, 250, square_width, square_width))
 
-    # Show everything drawn during this frame.
+    # Update the entire display or just selected parts of the display.
     pygame.display.update()
 
-    # Limit the game to 60 frames every second.
+    # Limit the game to 60 frames per second.
+
+    # Limiting the FPS can prevent CPU usage from getting too high
+    # which can lead to CPU throttling or lowering its clock speed.
     clock.tick(60)

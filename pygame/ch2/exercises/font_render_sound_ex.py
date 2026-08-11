@@ -88,5 +88,5 @@ while True:
 
                 pass
 
-    # Update the display.
+    # Updates the entire display or just selected parts of the display.
     pygame.display.update()

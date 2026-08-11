@@ -1,3 +1,10 @@
 Section 1: Nested for Loops and Grids
 Lesson: grid_with_nested_loops.py
 Exercise: nested_loops_grid_ex.py
+
+Section 2: 
+Lessons:
+memory_game_data.py
+memory_game_functions.py
+
+Exercise: memory_game_ex.py

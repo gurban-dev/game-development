@@ -1,6 +1,12 @@
 import pygame
 import sys
 
+# Learning goal:
+# Know how to use pygame.font.Font() and render() to create
+# text, blit() to display it, KEYDOWN events to detect keyboard
+# input, and pygame.mixer.Sound() with play() to trigger sound
+# effects.
+
 # Start every pygame module.
 pygame.init()
 
@@ -15,18 +21,27 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BLUE = (40, 120, 255)
 
-# Create a Font object.
+# Pygame needs a way of turning text into something that can
+# actually be drawn to a Surface. A Font object is what tells
+# Pygame how the text should look, including which font and
+# what size to use.
+
+# Font objects are used to turn strings into drawable text.
 
 # The first argument is the font file.
-# Passing None tells pygame to use the default font.
+# Passing None tells pygame to use the default font (FreeType or
+# freesansbold).
 
 # The second argument is the font size.
 font = pygame.font.Font(None, 48)
 
 # Load the sound effect.
 
-# Make sure beep.wav is in the same folder as this program.
-beep_sound = pygame.mixer.Sound("beep.wav")
+# To provide pygame with a way of loading sound, pygame.mixer.sound()
+# loads a sound file into a Sound object so that pygame can play it.
+
+# Make sure music.wav is in the same folder as this program.
+beep_sound = pygame.mixer.Sound("piano_note.wav")
 
 # Store the player's score.
 score = 0
@@ -38,6 +53,12 @@ while True:
     screen.fill(WHITE)
 
     # Create a Surface object containing the score text.
+
+    # The Font object stores the font configuration (font style and font size).
+
+    # The render() method belongs to a Font object and takes a
+    # string and rendering parameters, then creates and returns
+    # a new pygame.Surface containing the rendered text.
 
     # The first argument is the text.
     # The second argument turns anti-aliasing on.
@@ -85,5 +106,5 @@ while True:
                 # Play the sound effect.
                 beep_sound.play()
 
-    # Update the display.
+    # Update the entire display or just selected parts of the display.
     pygame.display.update()

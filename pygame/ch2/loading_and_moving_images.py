@@ -1,14 +1,20 @@
 import pygame
 import sys
 
+# Learning goal:
+# Understand how to load an image into a Pygame Surface,
+# display it on the screen using blit(), control its position
+# with X and Y coordinates, and update those coordinates under
+# each frame to create a simple animation.
+
 # Start every pygame module.
 pygame.init()
 
-# Create the game window.
+# Create the game window (Surface object).
 screen = pygame.display.set_mode((800, 600))
 
 # Set the window title.
-pygame.display.set_caption("Walking Pet")
+pygame.display.set_caption("Walking Cat")
 
 # Create a Clock object to control the frame rate.
 clock = pygame.time.Clock()
@@ -16,17 +22,18 @@ clock = pygame.time.Clock()
 # Define some colours.
 WHITE = (255, 255, 255)
 
-# Load an image from the current folder.
-pet = pygame.image.load("pet.png")
+# pygame.image.load() loads an image file and returns a
+# Surface object.
+cat = pygame.image.load("cat.jpeg")
 
-# Store the pet's horizontal position.
-pet_x = 0
+# Store the cat's horizontal position.
+cat_x = 0
 
-# Store the pet's vertical position.
-pet_y = 220
+# Store the cat's vertical position (220 pixels downwards).
+cat_y = 220
 
-# Store how many pixels the pet moves each frame.
-pet_speed = 4
+# Store how many pixels the cat moves each frame.
+cat_speed = 4
 
 # Keep the game running.
 while True:
@@ -43,24 +50,34 @@ while True:
             # Exit the program.
             sys.exit()
 
-    # Move the pet to the right.
-    pet_x += pet_speed
+    # Move the cat to the right.
+    cat_x += cat_speed
 
-    # Check if the pet has completely left the window.
-    if pet_x > 800:
+    # Check if the cat has completely left the window.
+    if cat_x > 800:
 
-        # Move the pet just outside the left edge.
-        pet_x = -pet.get_width()
+        # The .get_width() method reveals how wide a Pygame Surface
+        # is, measured in pixels.
+
+        # -cat.get_with() will move the cat entirely to the left of
+        # the left side of the window.
+        cat_x = -cat.get_width()
 
     # Fill the background before drawing
     # the next frame.
     screen.fill(WHITE)
 
-    # Copy the pet image onto the display surface.
-    screen.blit(pet, (pet_x, pet_y))
+    # While pygame.image.load() will load an image into the
+    # computer's memory, it doesn't automatically put that
+    # image inside the game window.
 
-    # Show everything drawn during this frame.
+    # blit() is an instruction that says take this image and
+    # copy it onto the Surface object that 'screen' references
+    # at position (cat_x, cat_y).
+    screen.blit(cat, (cat_x, cat_y))
+
+    # Update the entire display or just selected parts of the display.
     pygame.display.update()
 
-    # Limit the game to 60 frames every second.
+    # Limit the game to 60 frames per second.
     clock.tick(60)

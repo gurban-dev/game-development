@@ -3,11 +3,11 @@
 # and animating each one independently.
 
 # Requirements:
-# 1. Make all three pets move to the right.
-# 2. Give each pet a different speed.
-# 3. Draw all three pets every frame.
-# 4. Place each pet on a different row.
-# 5. When a pet completely leaves the right side of the window,
+# 1. Make all three animals move to the right.
+# 2. Give each animal a different speed.
+# 3. Draw all three animals every frame.
+# 4. Place each animal on a different row.
+# 5. When a animal completely leaves the right side of the window,
 #    move it just outside the left side of the window.
 
 import pygame
@@ -28,23 +28,23 @@ clock = pygame.time.Clock()
 # Define some colours.
 WHITE = (255, 255, 255)
 
-# Load the pet image.
-pet = pygame.image.load("pet.png")
+# Load the cheetah image.
+cheetah = pygame.image.load("cheetah.webp")
 
-# Store the first pet's position.
-pet1_x = 0
-pet1_y = 100
-pet1_speed = 3
+# Store the bald eagle's position.
+cheetah_x = 0
+cheetah_y = 100
+cheetah_speed = 3
 
-# Store the second pet's position.
-pet2_x = -200
-pet2_y = 250
-pet2_speed = 5
+# Store the caucasian shepherd's position.
+caucasian_shepherd_x = -200
+caucasian_shepherd_y = 250
+caucasian_shepherd_speed = 5
 
-# Store the third pet's position.
-pet3_x = -400
-pet3_y = 400
-pet3_speed = 7
+# Store the bald eagle's position.
+bald_eagle_x = -400
+bald_eagle_y = 400
+bald_eagle_speed = 7
 
 # Keep the game running.
 while True:
@@ -61,39 +61,39 @@ while True:
             # Exit the program.
             sys.exit()
 
-    # Move the first pet.
+    # Move the bald eagle.
     # Finish this.
 
-    # Move the second pet.
+    # Move the caucasian shepherd.
     # Finish this.
 
-    # Move the third pet.
+    # Move the bald eagle.
     # Finish this.
 
-    # Check if the first pet has completely left the window.
+    # Check if the cheetah has completely left the window.
     # Finish this.
 
-    # Check if the second pet has completely left the window.
+    # Check if the caucasian shepherd has completely left the window.
     # Finish this.
 
-    # Check if the third pet has completely left the window.
+    # Check if the bald eagle has completely left the window.
     # Finish this.
 
     # Fill the background before drawing
     # the next frame.
     screen.fill(WHITE)
 
-    # Draw the first pet.
+    # Draw the cheetah.
     # Finish this.
 
-    # Draw the second pet.
+    # Draw the caucasian shepherd.
     # Finish this.
 
-    # Draw the third pet.
+    # Draw the bald eagle.
     # Finish this.
 
-    # Show everything drawn during this frame.
+    # Update the entire display or just selected parts of the display.
     pygame.display.update()
 
-    # Limit the game to 60 frames every second.
+    # Limit the game to 60 frames per second.
     clock.tick(60)
