@@ -33,7 +33,7 @@ GREEN = (0, 170, 0)
 font = pygame.font.Font(None, 48)
 
 # Load the sound effect.
-beep_sound = pygame.mixer.Sound("beep.wav")
+beep_sound = pygame.mixer.Sound("piano-note.wav")
 
 # Store the number of times the sound has been played.
 play_count = 0
@@ -65,6 +65,9 @@ while True:
     # Display a congratulation message after
     # the sound has been played 10 times.
     # Finish this.
+
+    # Create a function that horizontally centers all of the text
+    # that is drawn onto the screen.
 
     # Check every event.
     for event in pygame.event.get():

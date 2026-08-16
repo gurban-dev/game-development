@@ -19,6 +19,10 @@ WHITE = (255, 255, 255)
 ANIMAL_WIDTH = 150
 ANIMAL_HEIGHT = 100
 
+# pygame.image.load() returns a Surface object.
+
+# A Surface object is like a blank digital sheet of paper.
+
 # Load the cheetah image.
 cheetah = pygame.image.load("cheetah.webp")
 
@@ -27,6 +31,9 @@ caucasian_shepherd = pygame.image.load("caucasian-shepherd.jpeg")
 
 # Load the bald eagle image.
 bald_eagle = pygame.image.load("bald-eagle.jpeg")
+
+# pygame.transform.scale() takes a Surface object and
+# returns a new Surface object with a different size.
 
 # Resize the images so they are all the same size.
 cheetah = pygame.transform.scale(
@@ -43,6 +50,11 @@ bald_eagle = pygame.transform.scale(
     bald_eagle,
     (ANIMAL_WIDTH, ANIMAL_HEIGHT)
 )
+
+# Store the animal's position.
+
+# x controls the horizontal position.
+# y controls the vertical position.
 
 # Store the first cheetah's position.
 cheetah_x = 0
@@ -83,8 +95,8 @@ while True:
     # Move the third animal.
     bald_eagle_x += bald_eagle_speed
 
-    # Check if the first animal has completely
-    # left the window.
+    # Check if the first animal has completely left
+    # the window.
 
     if cheetah_x >= screen.get_width():
 
@@ -96,7 +108,7 @@ while True:
     if caucasian_shepherd_x >= screen.get_width():
 
         # Move the animal just outside the left side.
-        caucasian_shepherd_x = -cheetah.get_width()
+        caucasian_shepherd_x = -caucasian_shepherd.get_width()
 
     # Check if the third animal has completely left
     # the window.
@@ -104,10 +116,12 @@ while True:
     if bald_eagle_x >= screen.get_width():
 
         # Move the animal just outside the left side.
-        bald_eagle_x = -cheetah.get_width()
+        bald_eagle_x = -bald_eagle.get_width()
 
     # Fill the background before drawing the next frame.
     screen.fill(WHITE)
+
+    # .blit() pastes your image onto the screen.
 
     # Draw the first animal.
     screen.blit(cheetah, (cheetah_x, cheetah_y))

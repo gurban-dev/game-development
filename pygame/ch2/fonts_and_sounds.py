@@ -26,22 +26,23 @@ BLUE = (40, 120, 255)
 # Pygame how the text should look, including which font and
 # what size to use.
 
-# Font objects are used to turn strings into drawable text.
+# A Font object knows how to render text.
 
-# The first argument is the font file.
-# Passing None tells pygame to use the default font (FreeType or
-# freesansbold).
+# The first argument is the font file path.
+# A font file path is the location of a font file on your computer.
+# It tells Pygame which font file to load and use for the text.
+# Passing None tells Pygame to use its default font.
 
 # The second argument is the font size.
 font = pygame.font.Font(None, 48)
 
 # Load the sound effect.
 
-# To provide pygame with a way of loading sound, pygame.mixer.sound()
+# To provide pygame with a way of loading sound, pygame.mixer.Sound()
 # loads a sound file into a Sound object so that pygame can play it.
 
-# Make sure music.wav is in the same folder as this program.
-beep_sound = pygame.mixer.Sound("piano_note.wav")
+# Make sure piano_note.wav is in the same folder as this program.
+beep_sound = pygame.mixer.Sound("piano-note.wav")
 
 # Store the player's score.
 score = 0
@@ -52,16 +53,21 @@ while True:
     # Fill the entire window with white.
     screen.fill(WHITE)
 
-    # Create a Surface object containing the score text.
+    # Create a Surface object containing the rendered text which is the
+    # score text in this case.
 
     # The Font object stores the font configuration (font style and font size).
 
     # The render() method belongs to a Font object and takes a
     # string and rendering parameters, then creates and returns
-    # a new pygame.Surface containing the rendered text.
+    # a new pygame.Surface object containing the rendered text.
 
     # The first argument is the text.
-    # The second argument turns anti-aliasing on.
+    # True being the second argument enables anti-aliasing.
+
+    # Anti-aliasing smooths the edges of the text so they look less
+    # rough or uneven.
+
     # The third argument is the text color.
     score_text = font.render(
         f"Score: {score}",
@@ -77,6 +83,7 @@ while True:
     )
 
     # Copy the score Surface onto the game window.
+    # The second argument specifies where to place the Surface.
     screen.blit(score_text, (50, 50))
 
     # Copy the instructions onto the game window.
