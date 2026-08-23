@@ -43,8 +43,8 @@ while True:
     # Fill the entire window with white.
     screen.fill(WHITE)
 
-    # Create a Surface containing the title text.
-    # render() converts the string into a Surface that Pygame can draw.
+    # Create a Surface object containing the title text "Animal Soundboard".
+    # render() converts the string into a Surface object that Pygame can draw.
     # True enables anti-aliasing, which smooths the edges of the text.
     # The third argument sets the text color.
     title_text = font.render(
@@ -68,8 +68,9 @@ while True:
         BLACK
     )
 
+    # The .blit() method places Surface objects onto the game window.
+
     # Draw the title near the top of the window.
-    # blit() places the title Surface onto the game window.
     screen.blit(title_text, (calculate_centered_x(title_text), 50))
 
     # Draw the instructions below the title.

@@ -19,13 +19,12 @@ import sys
 
 # 7. Instead of printing the row and column, print the pixel position
 #    of each square using:
-#    print(f"x = {x}, y = {y}")
+#    print(f"x: {x}, y: {y}")
 
 
 # Bonus Challenge
 # Create a grid with 10 columns and 8 rows that still fits completely
 # inside the window. You may only change these constants:
-
 # • ROWS
 # • COLUMNS
 # • BOX_SIZE
@@ -53,8 +52,8 @@ BACKGROUND = (40, 40, 40)
 SQUARE = (255, 200, 0)
 
 # Define the grid.
-ROWS = 6
-COLUMNS = 6
+NO_OF_ROWS = 6
+NO_OF_COLUMNS = 6
 
 # Define the size of each square.
 BOX_SIZE = 50
@@ -82,10 +81,10 @@ while running:
     screen.fill(BACKGROUND)
 
     # Go through every row.
-    for row in range(ROWS):
+    for row in range(NO_OF_ROWS):
 
         # Go through every column.
-        for column in range(COLUMNS):
+        for column in range(NO_OF_COLUMNS):
 
             # Calculate the x position.
             x = START_X + column * (BOX_SIZE + GAP)

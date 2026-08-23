@@ -1,12 +1,12 @@
 # Exercise: Build the Memory Game Foundation.
-#
+
 # This exercise tests two Pygame concepts:
 # 1. Organizing game data.
 # 2. Organizing code with functions.
 
 # Instructions:
 
-# Create a new Pygame program based on the two programs you just studied:
+# Create a new Pygame program based on the two programs that were introduced:
 # - memory_game_data.py
 # - memory_game_functions.py
 
@@ -156,7 +156,6 @@
 # 8. Why pygame.display.update() is needed after drawing.
 
 # The main lesson:
-
 # Combine organized game data with organized functions.
 
 # This is the foundation for building a real memory game.
