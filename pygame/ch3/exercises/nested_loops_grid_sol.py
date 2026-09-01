@@ -7,11 +7,11 @@ import sys
 # The constants control the size, spacing, and position of the grid.
 # The loops use those constants to draw every square automatically.
 
-
 # Start every Pygame module.
 pygame.init()
 
 # Create an 800 by 600 pixel game window.
+# set_mode() returns a Surface object.
 screen = pygame.display.set_mode((800, 600))
 
 # Set the window title.
@@ -20,28 +20,23 @@ pygame.display.set_caption("Grid Builder Exercise")
 # Create a Clock object for controlling the frame rate.
 clock = pygame.time.Clock()
 
-
 # Define the background and square colours.
-BACKGROUND = (40, 40, 40)
-SQUARE = (255, 200, 0)
-
+BACKGROUND_COLOR = (40, 40, 40)
+SQUARE_COLOR = (255, 200, 0)
 
 # Define the number of rows and columns in the grid.
 NO_OF_ROWS = 8
 NO_OF_COLUMNS = 5
 
-
 # Define the width and height of every square.
 BOX_SIZE = 40
-
 
 # Define the space between each square.
 GAP = 25
 
-
 # Define the position where the grid begins.
-START_X = 50
-START_Y = 150
+START_X = 250
+START_Y = 50
 
 # Keep the game running until the window is closed.
 running = True
@@ -56,7 +51,7 @@ while running:
             running = False
 
     # Fill the entire window with the background colour.
-    screen.fill(BACKGROUND)
+    screen.fill(BACKGROUND_COLOR)
 
     # Go through every row in the grid.
     for row in range(NO_OF_ROWS):
@@ -78,16 +73,17 @@ while running:
             # Draw the square at its calculated position.
             pygame.draw.rect(
                 screen,
-                SQUARE,
+                SQUARE_COLOR,
                 (x, y, BOX_SIZE, BOX_SIZE)
             )
 
-    # Update the window so the new frame is displayed.
+    # -Update only certain parts of the window so the new frame
+    # is displayed.
+    # flip() updates the entire window.
     pygame.display.update()
 
     # Limit the program to 60 frames per second.
     clock.tick(60)
-
 
 # Shut down Pygame after the loop ends.
 pygame.quit()
