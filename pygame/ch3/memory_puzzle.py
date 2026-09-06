@@ -219,17 +219,16 @@ def getRandomizedBoard():
     # Randomize the order of the icons in the list.
     random.shuffle(icons)
 
-    # Choose half as many icons as there are board spaces.
+    # Find out how many different icons we need.
+    # We need two copies of every icon.
+    # For example, a board with 20 spaces needs 10 pairs.
+    num_icons_used = int(NO_OF_COLUMNS * NO_OF_ROWS / 2)
 
-    # The board needs two of each icon because the game is a
-    # matching-pairs game.
+    # Keep only the first num_icons_used icons from the list.
+    icons = icons[:num_icons_used]
 
-    # Suppose the board had 20 spaces, we would need:
-    # 10 different icons x 2 -> 20 icons
-    numIconsUsed = int(NO_OF_COLUMNS * NO_OF_ROWS / 2)
-
-    # Keeping only the number of icons needed with list slicing.
-    icons = icons[:numIconsUsed] * 2
+    # Make a second copy of every icon so that each icon has a pair.
+    icons = icons * 2
 
     random.shuffle(icons)
 
