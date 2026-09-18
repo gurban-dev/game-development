@@ -6,6 +6,29 @@ pygame.init()
 WINDOWWIDTH = 400
 WINDOWHEIGHT = 400
 
+# Instead of using the BOXSIZE variable in our code we could just
+# type the integer 40 directly in the code. But there are two
+# reasons to use constant variables.
+
+# First, if we ever wanted to change the size of each box later,
+# we would have to go through the entire program and find and
+# replace each time we typed 40. By just using the BOXSIZE
+# constant, we only have to change line 13 and the rest of
+# the program is already up to date.
+
+# Second, it makes the code more readable by allowing you to see
+# what the values used in calculations actually represent as shown
+# in the two commented lines below.
+# XMARGIN = int((WINDOWWIDTH - (BOARDWIDTH * (BOXSIZE + GAPSIZE))) / 2)
+
+# XMARGIN = int((640 - (10 * (40 + 10))) / 2)
+
+# However, the following would be going too far:
+# ZERO = 0
+# ONE = 1
+# TWO = 99999999
+# TWOANDTHREEQUARTERS = 2.75
+
 BOXSIZE = 50
 GAPSIZE = 10
 
@@ -23,20 +46,20 @@ DISPLAYSURF = pygame.display.set_mode(
 pygame.display.set_caption('Mouse Tracker')
 
 
-def leftTopCoordsOfBox(boxx, boxy):
+def left_top_coords_of_box(box_x, box_y):
     # Convert board coordinates into screen pixel coordinates.
-    left = boxx * (BOXSIZE + GAPSIZE)
-    top = boxy * (BOXSIZE + GAPSIZE)
+    left = box_x * (BOXSIZE + GAPSIZE)
+    top = box_y * (BOXSIZE + GAPSIZE)
 
     # Return the top-left pixel position of the box.
     return left, top
 
 
-def drawBoard():
+def draw_board():
     # Draw every box on the board.
-    for boxx in range(BOARDWIDTH):
-        for boxy in range(BOARDHEIGHT):
-            left, top = leftTopCoordsOfBox(boxx, boxy)
+    for box_x in range(BOARDWIDTH):
+        for box_y in range(BOARDHEIGHT):
+            left, top = left_top_coords_of_box(box_x, box_y)
 
             pygame.draw.rect(
                 DISPLAYSURF,
@@ -45,11 +68,11 @@ def drawBoard():
             )
 
 
-def getBoxAtPixel(x, y):
+def get_box_at_pixel(x, y):
     # Check every box on the board.
-    for boxx in range(BOARDWIDTH):
-        for boxy in range(BOARDHEIGHT):
-            left, top = leftTopCoordsOfBox(boxx, boxy)
+    for box_x in range(BOARDWIDTH):
+        for box_y in range(BOARDHEIGHT):
+            left, top = left_top_coords_of_box(box_x, box_y)
 
             # Create a rectangle representing this box.
             boxRect = pygame.Rect(
@@ -61,7 +84,7 @@ def getBoxAtPixel(x, y):
 
             # Check whether the mouse position is inside this box.
             if boxRect.collidepoint(x, y):
-                return boxx, boxy
+                return box_x, box_y
 
     # Return None when the mouse is not over a box.
     return None, None
@@ -72,17 +95,17 @@ while True:
     DISPLAYSURF.fill(BGCOLOR)
 
     # Draw the board.
-    drawBoard()
+    draw_board()
 
     # Get the mouse's current pixel position.
-    mousex, mousey = pygame.mouse.get_pos()
+    mouse_x, mouse_y = pygame.mouse.get_pos()
 
     # Determine which box is under the mouse.
-    boxx, boxy = getBoxAtPixel(mousex, mousey)
+    box_x, box_y = get_box_at_pixel(mouse_x, mouse_y)
 
-    if boxx is not None and boxy is not None:
+    if box_x is not None and box_y is not None:
         # Get the pixel position of the box under the mouse.
-        left, top = leftTopCoordsOfBox(boxx, boxy)
+        left, top = left_top_coords_of_box(box_x, box_y)
 
         # Draw a border around the box.
         pygame.draw.rect(
@@ -96,6 +119,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+
             sys.exit()
 
     # Display everything drawn during this frame.

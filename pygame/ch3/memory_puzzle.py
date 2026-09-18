@@ -14,8 +14,9 @@ import random, pygame, sys
 # QUIT, KEYDOWN, K_SPACE, MOUSEBUTTONDOWN
 from pygame.locals import *
 
-# Set the number of times the game loop should run each second.
-FPS = 30 # frames per second, the general speed of the program
+# Frames per second, the number of times the game loop should
+# run each second.
+FPS = 30
 
 # Set width and height of the Pygame window in pixels.
 WINDOW_WIDTH = 640
@@ -38,6 +39,7 @@ NO_OF_COLUMNS = 10
 NO_OF_ROWS = 7
 
 assert (NO_OF_COLUMNS * NO_OF_ROWS) % 2 == 0, 'Board needs to have an even number of boxes for pairs of matches.'
+
 XMARGIN = int((WINDOW_WIDTH - (NO_OF_COLUMNS * (BOXSIZE + GAPSIZE))) / 2)
 YMARGIN = int((WINDOW_HEIGHT - (NO_OF_ROWS * (BOXSIZE + GAPSIZE))) / 2)
 
@@ -66,6 +68,7 @@ OVAL = 'oval'
 
 ALLCOLORS = (RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, CYAN)
 ALLSHAPES = (DONUT, SQUARE, DIAMOND, LINES, OVAL)
+
 assert len(ALLCOLORS) * len(ALLSHAPES) * 2 >= NO_OF_COLUMNS * NO_OF_ROWS, "Board is too big for the number of shapes/colors defined."
 
 def main():
@@ -393,7 +396,7 @@ def startGameAnimation(board):
 
 
 def gameWonAnimation(board):
-    # flash the background color when the player has won
+    # Flash the background color when the player has won.
     coveredBoxes = generateRevealedBoxesData(True)
 
     color1 = LIGHTBGCOLOR
@@ -415,9 +418,11 @@ def gameWonAnimation(board):
 def hasWon(revealedBoxes):
     # Returns True if all the boxes have been revealed, otherwise False.
     for i in revealedBoxes:
+
         # If any boxes are covered.
         if False in i:
             return False
+
     return True
 
 
