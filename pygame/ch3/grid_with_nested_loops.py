@@ -4,7 +4,8 @@ import sys
 # Learning goal:
 # Understand how nested for loops can create a grid of objects.
 # Use row and column numbers to calculate the position of each square.
-# Understand how constants control the size, spacing, and position of the grid.
+# Understand how constants control the size, spacing, and position of
+# the grid.
 
 # Start every Pygame module.
 pygame.init()
@@ -72,7 +73,9 @@ while running:
             )
 
     pygame.display.update()
+
     clock.tick(60)
 
 pygame.quit()
+
 sys.exit()

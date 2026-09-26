@@ -4,12 +4,28 @@ Exercise: nested_loops_grid_ex.py
 
 Section 2:
 Lessons:
-memory_puzzle.py
-mouse_tracker.py
+The entire program is memory_puzzle.py.
+It is broken down into smaller programs.
 
-Exercise: box_highlighter_ex.py
+mouse_tracker.py
+pygame_grid1.py
+pygame_grid2.py
+
+grid_board1.py
+grid_board2.py
+
+The code in pygame_grid2.py and grid_board2.py are extensions of
+pygame_grid1.py and grid_board2.py.
+
+Exercises:
+mouse_tracker_ex.py
+pygame_grid1_ex.py
+pygame_grid2_ex.py
+
+checkerboard_ex.py
+highlight_box_ex.py
 
 Section 3:
-Lesson: 
+Lesson:
 
 Exercise: 
