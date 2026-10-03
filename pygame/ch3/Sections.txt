@@ -7,20 +7,10 @@ Lessons:
 The entire program is memory_puzzle.py.
 It is broken down into smaller programs.
 
-mouse_tracker.py
-pygame_grid1.py
-pygame_grid2.py
-
-grid_board1.py
-grid_board2.py
-
-The code in pygame_grid2.py and grid_board2.py are extensions of
-pygame_grid1.py and grid_board2.py.
+pygame_grid.py
 
 Exercises:
-mouse_tracker_ex.py
-pygame_grid1_ex.py
-pygame_grid2_ex.py
+pygame_grid_ex.py
 
 checkerboard_ex.py
 highlight_box_ex.py

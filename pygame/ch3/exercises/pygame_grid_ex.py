@@ -9,6 +9,8 @@
 # - Use a main loop to continuously redraw the Pygame window.
 # - Process the pygame.QUIT event so the window can close correctly.
 # - Use pygame.display.update() to display each completed frame.
+# - Get the current mouse position with pygame.mouse.get_pos().
+# - Convert pixel coordinates into board coordinates.
 
 # Create a Pygame program that displays a 4-column by 3-row grid.
 
@@ -18,7 +20,18 @@
 
 # Create another function that uses nested loops to draw every square.
 
-# Do not add mouse interaction yet.
+# Then, determine which column and row the mouse is currently hovering over.
+# Print the column and row to the terminal.
+
+# The mouse position should be checked continuously while the program runs.
+
+# For example, if the mouse is hovering over the second column and first row,
+# print:
+# Column: 1, Row: 0
+
+# Remember that board coordinates start at 0.
+
+# Do not add mouse clicking or highlighting yet.
 
 # Requirements:
 # Window: 400 x 400 pixels
