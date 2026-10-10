@@ -1,0 +1,36 @@
+Create a file named main.py inside the echoes-of-the-abyss project
+directory. Write the Python code needed to initialize Pygame and
+prepare the application for its main game loop.
+
+Requirements
+1. Import Pygame. Import the Pygame library so that you can access
+   its functions and modules.
+
+2. Initialize Pygame. Call the appropriate initialization function
+   to initialize Pygame's modules.
+
+3. Create the game window. Create a display window with a width of
+   800 pixels and a height of 600 pixels. Store the returned display
+   Surface in a variable named screen.
+
+4. Set the window title. Set the window caption to Echoes of the Abyss.
+
+5. Create a clock object. Create an instance of pygame.time.Clock() and
+   store it in a variable named clock. You will use this object later
+   to control the game's frame rate.
+
+6. Create a Boolean running variable. Create a variable named running
+   and initialize it to the Boolean value True. This variable will
+   control whether the main game loop continues executing.
+
+Implementation constraints
+- Write the code in main.py.
+- Place the import and initialization statements before creating the
+  window.
+- Create the screen, clock, and running variables before the main
+  game loop.
+- Use the exact variable names specified above.
+- Do not implement player movement, collision detection, sprites, or
+  combat yet.
+- Do not copy a complete game loop from a tutorial. The purpose of
+  this task is to prepare the application for the next step.
