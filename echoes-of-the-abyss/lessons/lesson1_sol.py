@@ -1,5 +1,5 @@
-
-# Import the Pygame library so we can use its functions.
+# Import the Pygame library into this namespace so we can use
+# its functions.
 import pygame
 
 # Initialize the Pygame modules.
