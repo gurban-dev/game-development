@@ -62,7 +62,13 @@ while running:
     # frame-rate independent.
     if keys[pygame.K_RIGHT]:
         print("Right key is being held.")
+
         player_position.x += player_speed * elapsed_time
+
+    if keys[pygame.K_LEFT]:
+        print("Left key is being held.")
+
+        player_position.x -= player_speed * elapsed_time
 
     # Keep the player inside the window.
     # The maximum X coordinate is the window width minus the
@@ -70,6 +76,11 @@ while running:
     player_position.x = max(
         0,
         min(player_position.x, WIDTH - player_size)
+    )
+
+    player_position.y = max(
+        0,
+        min(player_position.y, WIDTH - player_size)
     )
 
     # Create a rectangle from the player's current position.
