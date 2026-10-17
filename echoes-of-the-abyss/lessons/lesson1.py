@@ -39,6 +39,8 @@ rect_y = 380
 
 running = True
 
+# This main game loop is responsible for the program repeatedly
+# updating and redrawing the game.
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
