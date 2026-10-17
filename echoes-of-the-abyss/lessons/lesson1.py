@@ -46,7 +46,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    # Filling the game window with a background color.
+    # Fill the game window with a background color.
 
     # Clear the screen before drawing the next frame so the
     # previous frame's drawings do not remain visible.
