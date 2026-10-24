@@ -9,6 +9,7 @@ PLAYER_SIZE = 50
 SPEED = 200
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
 pygame.display.set_caption("Echoes of the Abyss")
 
 clock = pygame.time.Clock()
@@ -26,18 +27,29 @@ while running:
 
     keys = pygame.key.get_pressed()
 
-    # Existing Lesson 2 movement.
     direction = pygame.Vector2(0, 0)
 
+    # TODO: Add input checks for the left, up, and down arrow keys.
+    # Update direction.x for left movement and direction.y for
+    # vertical movement.
     if keys[pygame.K_RIGHT]:
         direction.x = 1
 
-    player_position += direction * SPEED * dt
+    # TODO: Normalize the direction vector when its length is greater
+    # than zero.
+    # This prevents the player from moving faster when moving diagonally.
+
+    # TODO: Update the player's position using direction, SPEED, and dt.
+    # Keep the movement frame-rate independent.
 
     # Keep the player inside the horizontal boundaries.
     player_position.x = max(
         0, min(WIDTH - PLAYER_SIZE, player_position.x)
     )
+
+    # TODO: Keep the player inside the vertical boundaries.
+    # Use HEIGHT and PLAYER_SIZE to calculate the valid Y-coordinate
+    # range.
 
     screen.fill((18, 20, 32))
 

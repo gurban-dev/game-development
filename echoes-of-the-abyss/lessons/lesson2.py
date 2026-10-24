@@ -28,6 +28,7 @@ WHITE = (255, 255, 255)
 BLUE = (50, 100, 255)
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
 pygame.display.set_caption("Echoes of the Abyss")
 
 # Define the player's position, size, and movement speed.

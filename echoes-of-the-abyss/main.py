@@ -36,10 +36,13 @@ while running:
 
     if keys[pygame.K_RIGHT]:
         direction.x += 1
+
     if keys[pygame.K_LEFT]:
         direction.x -= 1
+
     if keys[pygame.K_DOWN]:
         direction.y += 1
+
     if keys[pygame.K_UP]:
         direction.y -= 1
 
