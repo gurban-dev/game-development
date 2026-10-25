@@ -12,6 +12,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Diagonal Movement Demonstration")
 
 clock = pygame.time.Clock()
+
 font = pygame.font.Font(None, 28)
 
 # A 2D vector bundles an (X, Y) coordinate into a single object.

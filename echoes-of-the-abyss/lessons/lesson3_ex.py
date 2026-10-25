@@ -14,6 +14,8 @@ pygame.display.set_caption("Echoes of the Abyss")
 
 clock = pygame.time.Clock()
 
+font = pygame.font.Font(None, 28)
+
 player_position = pygame.Vector2(100, 100)
 
 running = True
@@ -61,6 +63,19 @@ while running:
     )
 
     pygame.draw.rect(screen, (100, 180, 255), player_rect)
+
+    vector_length = direction.length()
+
+    message = f"Direction length: {vector_length:.2f}"
+
+    text_surface = font.render(message, True, (240, 240, 240))
+
+    screen.blit(text_surface, (20, 20))
+
+    screen.blit(
+        font.render("Use the arrow keys.", True, (240, 240, 240)),
+        (20, 55),
+    )
 
     pygame.display.flip()
 
