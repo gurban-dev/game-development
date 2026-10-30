@@ -8,6 +8,7 @@ PLAYER_SIZE = 50
 SPEED = 200
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
 pygame.display.set_caption("Echoes of the Abyss")
 
 clock = pygame.time.Clock()
@@ -22,6 +23,8 @@ player_position = pygame.Vector2(100, 100)
 running = True
 
 while running:
+    # dt stands for delta time.
+    # Dividing by 1000 converts the time from milliseconds into seconds.
     dt = clock.tick(60) / 1000
 
     for event in pygame.event.get():
@@ -35,12 +38,14 @@ while running:
     # Check for horizontal movement.
     if keys[pygame.K_LEFT]:
         direction.x = -1
+
     if keys[pygame.K_RIGHT]:
         direction.x = 1
 
     # Check for vertical movement.
     if keys[pygame.K_UP]:
         direction.y = -1
+
     if keys[pygame.K_DOWN]:
         direction.y = 1
 
@@ -88,6 +93,7 @@ while running:
     # Use different colors for the wall and the player.
 
 
+    # Update the entire screen.
     pygame.display.flip()
 
 pygame.quit()
