@@ -33,6 +33,9 @@ while running:
     keys = pygame.key.get_pressed()
 
     # Start with zero movement in both directions.
+
+    # 'direction' represents which direction the player intends
+    # to move. 
     direction = pygame.Vector2(0, 0)
 
     # Decrease x to move left and increase x to move right.

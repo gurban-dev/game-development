@@ -14,6 +14,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Collision Laboratory")
 
 clock = pygame.time.Clock()
+
 font = pygame.font.Font(None, 28)
 
 # --------------------------------------------------
@@ -73,7 +74,8 @@ SPEED = 200
 
 # clock.tick(60) returns the elapsed time in milliseconds.
 
-# Dividing by 1000 converts milliseconds into seconds.
+# Since 1 second is equal to 1 000 milliseconds, dividing by
+# 1000 converts milliseconds into seconds.
 
 # For example:
 # 16 milliseconds / 1000 = 0.016 seconds.
@@ -99,6 +101,7 @@ SPEED = 200
 
 # Example:
 # previous_x = player_position.x
+
 # player_position.x += SPEED * dt
 
 # if collision:
@@ -111,7 +114,8 @@ SPEED = 200
 # 5. Understanding rectangle collision detection
 # --------------------------------------------------
 
-# colliderect() checks whether two rectangles overlap.
+# pygame.Rect's .colliderect() method checks whether
+# two rectangles overlap.
 
 # Example:
 # colliding = player_rect.colliderect(wall_rect)
@@ -154,7 +158,7 @@ running = True
 
 while running:
     # Calculate the elapsed time.
-    dt = clock.tick(60) / 1000
+    dt = clock.tick(60) / 1_000
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

@@ -24,13 +24,17 @@ running = True
 
 while running:
     # dt stands for delta time.
-    # Dividing by 1000 converts the time from milliseconds into seconds.
+    # Dividing by 1000 converts the time from milliseconds
+    # into seconds.
     dt = clock.tick(60) / 1000
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
+    # pygame.key.get_pressed() returns a tuple of over 300
+    # boolean values that represents the state of your
+    # keyboard.
     keys = pygame.key.get_pressed()
 
     direction = pygame.Vector2(0, 0)

@@ -8,6 +8,7 @@ PLAYER_SIZE = 50
 SPEED = 200
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
 pygame.display.set_caption("Echoes of the Abyss")
 
 clock = pygame.time.Clock()
@@ -100,3 +101,90 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
+
+
+# Question 1:
+# Why do we save previous_x before updating
+# the player's position?
+
+# Answer:
+# We save the previous X coordinate so that we
+# can restore the player's original position if
+# a collision occurs after horizontal movement.
+
+
+# Question 2:
+# What does colliderect() return?
+
+# Answer:
+# It returns True if two rectangles overlap
+# and False if they do not overlap.
+
+
+# Question 3:
+# Why do we create a new player rectangle after
+# updating its position?
+
+# Answer:
+# Because the player's position has changed.
+# We need an updated rectangle to accurately
+# detect collisions at the new position.
+
+
+# Question 4:
+# Why do we check horizontal and vertical
+# collisions separately?
+
+# Answer:
+# This allows us to determine which direction
+# caused the collision. We can undo movement
+# along the blocked axis while allowing movement
+# along the other axis.
+
+# This also allows the player to slide along walls.
+
+
+# Question 5:
+# Why do we multiply movement by dt?
+
+# Answer:
+# dt represents the time elapsed since the
+# previous frame. Multiplying movement by dt
+# makes the player's movement independent of
+# the frame rate.
+
+
+# Question 6:
+# Why do we subtract PLAYER_SIZE from WIDTH
+# and HEIGHT when checking screen boundaries?
+
+# Answer:
+# Because player_position represents the
+# top-left corner of the player.
+
+# We subtract PLAYER_SIZE to ensure that the
+# player's entire rectangle remains inside
+# the screen rather than just its top-left corner.
+
+
+# Question 7:
+# Why do we draw the wall and player after
+# filling the screen with the background color?
+
+# Answer:
+# screen.fill() clears the previous frame.
+# We then draw the wall and player on top of
+# the background so they remain visible.
+
+
+# Question 8:
+# What would happen if we removed direction
+# normalization?
+
+# Answer:
+# The player would move faster diagonally than
+# horizontally or vertically.
+
+# Normalizing the direction vector ensures
+# that its length is 1, keeping movement speed
+# consistent in every direction.

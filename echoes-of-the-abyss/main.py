@@ -10,6 +10,7 @@ PLAYER_SIZE = 50
 SPEED = 200
 
 BACKGROUND_COLOR = (18, 20, 32)
+PLAYER_COLOR = (100, 180, 255)
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -21,12 +22,20 @@ clock = pygame.time.Clock()
 # Store the player's position as a vector.
 player_position = pygame.Vector2(100, 100)
 
+player_rect = pygame.Rect(
+    round(player_position.x),
+    round(player_position.y),
+    PLAYER_SIZE,
+    PLAYER_SIZE,
+)
+
 world = World()
 
 running = True
 
 while running:
-    # Calculate the time elapsed since the previous frame.
+    # Calculate the time elapsed since the previous frame
+    # and convert it from milliseconds to second.
     dt = clock.tick(60) / 1000
 
     # Handle events such as closing the game window.
