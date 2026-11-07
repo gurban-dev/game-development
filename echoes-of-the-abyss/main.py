@@ -43,7 +43,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    # Read the current keyboard state.
+    # Read the current keyboard state to determine which arrow
+    # keys are being pressed.
     keys = pygame.key.get_pressed()
 
     # Build the movement direction from keyboard input.
@@ -66,19 +67,29 @@ while running:
         direction = direction.normalize()
 
     # Attempt horizontal movement.
+
+    # If the player collides with a wall, the program should
+    # restore their previous X-coordinate.
     previous_x = player_position.x
 
     # Update the player's position.
     player_position.x += direction.x * SPEED * dt
 
+    # Update the position of the player's rectangle so that it
+    # matches the player's current position.
     player_rect.topleft = (
+
+        # player_rect is an instance of the pygame.Rect class.
+        # pygame.Rect expects integers which is why the x and y
+        # coordinates must be rounded.
         round(player_position.x),
         round(player_position.y),
     )
 
-    # Resolve horizontal collisions.
+    # Check whether the player has collided with any walls.
     for wall in world.walls:
         if player_rect.colliderect(wall):
+            # Restore the player's previous X-coordinate.
             player_position.x = previous_x
 
             player_rect.topleft = (

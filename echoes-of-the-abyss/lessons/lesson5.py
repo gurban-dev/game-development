@@ -1,10 +1,14 @@
-
 import pygame
 
 
 class Player:
+    # __init__() is a dunder method because it has two leading
+    # and two trailing underscores.
     def __init__(self, x, y, size, color, speed):
         # Store the player's attributes inside the object.
+
+        # pygame.Vector2 creates a 2D vector that stores two numerical
+        # values: an X-coordinate and a Y-coordinate.
         self.position = pygame.Vector2(x, y)
         self.size = size
         self.color = color
@@ -48,7 +52,13 @@ class Player:
         )
 
         # Synchronize the rectangle with the player's position.
+
+        # Update the position of the player's rectangle so that it
+        # matches the player's current position.
         self.rect.topleft = (
+            # self.rect is an instance of the pygame.Rect class.
+            # pygame.Rect expects integers which is why the x and y
+            # coordinates must be rounded.
             round(self.position.x),
             round(self.position.y),
         )
@@ -72,6 +82,7 @@ def main():
     PLAYER_COLOR = (100, 180, 255)
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
     pygame.display.set_caption("The Adventurer")
 
     clock = pygame.time.Clock()
@@ -98,7 +109,8 @@ def main():
         # Read the current keyboard state.
         keys = pygame.key.get_pressed()
 
-        # Let the Player object update its own state.
+        # Update the player's position based on keyboard input,
+        # elapsed time and the screen boundaries.
         player.update(keys, dt, WIDTH, HEIGHT)
 
         # Draw the game.
@@ -107,10 +119,19 @@ def main():
         # Let the Player object handle its own rendering.
         player.draw(screen)
 
+        # Update the entire screen.
         pygame.display.flip()
 
     pygame.quit()
 
+# __name__ is a built-in Python dunder variable that reveals how
+# a Python program is being executed.
+
+# It has two possible values:
+# • "__main__": If you run the file directly (with python lesson5.py).
+# • "lesson5" (the filename): If the file is being imported as a module
+#                             into another script.
+print("__name__:", __name__)
 
 if __name__ == "__main__":
     main()

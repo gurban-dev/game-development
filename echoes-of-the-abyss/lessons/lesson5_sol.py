@@ -1,4 +1,3 @@
-
 import pygame
 
 
@@ -96,7 +95,8 @@ def main():
 
         keys = pygame.key.get_pressed()
 
-        # Delegate movement and state updates to the Player.
+        # Update the player's position based on keyboard input,
+        # elapsed time and the screen boundaries.
         player.update(keys, dt, WIDTH, HEIGHT)
 
         screen.fill(BACKGROUND_COLOR)

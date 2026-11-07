@@ -21,6 +21,8 @@ wall_rect = pygame.Rect(350, 200, 150, 200)
 running = True
 
 while running:
+    # block.tick(60) returns the elapsed time since the
+    # previous frame in seconds.
     dt = clock.tick(60) / 1000
 
     for event in pygame.event.get():
@@ -34,12 +36,14 @@ while running:
     # Check for horizontal movement.
     if keys[pygame.K_LEFT]:
         direction.x = -1
+
     if keys[pygame.K_RIGHT]:
         direction.x = 1
 
     # Check for vertical movement.
     if keys[pygame.K_UP]:
         direction.y = -1
+
     if keys[pygame.K_DOWN]:
         direction.y = 1
 
@@ -49,6 +53,9 @@ while running:
 
     # Move horizontally and check for a collision.
     previous_x = player_position.x
+
+    # Multiplying the movement by dt to ensure that the player moves
+    # at approximately the same speed regardless of the frame rate.
     player_position.x += direction.x * SPEED * dt
 
     player_rect = pygame.Rect(
@@ -63,6 +70,7 @@ while running:
 
     # Move vertically and check for a collision.
     previous_y = player_position.y
+
     player_position.y += direction.y * SPEED * dt
 
     player_rect = pygame.Rect(
@@ -72,6 +80,8 @@ while running:
         PLAYER_SIZE,
     )
 
+    # colliderect() detects overlapping rectangles by returning
+    # True or False.
     if player_rect.colliderect(wall_rect):
         player_position.y = previous_y
 
