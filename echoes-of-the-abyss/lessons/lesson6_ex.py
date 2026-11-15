@@ -3,20 +3,20 @@ import pygame
 # Import Path from pathlib.
 
 # Pixel Art Awakens — 15-minute exercise
-#
+
 # The arrow keys already move a square, and the square already
 # stays inside the window. That square is a placeholder. Replace
 # it with a sprite, and draw the crystal sprite on top of the
 # gold rectangle.
-#
+
 # Two images are already on disk, beside this file:
 #   assets/adventurer.png   16 x 16, with fully transparent pixels
 #   assets/crystal.png      16 x 16, with partly transparent pixels
-#
+
 # Implement all of the following:
-#
+
 # 1. Import Path from pathlib.
-#
+
 # 2. Inside Player.__init__, after the Rect is created, build a
 #    path to adventurer.png from this file's own location:
 #        Path(__file__).parent / "assets" / "adventurer.png"
@@ -29,18 +29,18 @@ import pygame
 #    that display so it can match the screen's pixel format.
 #    Use scale, which keeps hard pixel edges. smoothscale blends
 #    pixels and will make this art look blurred.
-#
+
 # 3. In Player.draw, remove the pygame.draw.rect placeholder.
 #    Copy the sprite onto the supplied Surface with blit.
 #    The destination is self.rect.topleft, so the picture stays
 #    aligned with the rectangle that movement already updates.
-#
+
 # 4. Before the game loop, build the same kind of path for
 #    assets/crystal.png. Load it, call convert_alpha(), and scale
 #    it to (64, 64). Store the result in a variable named crystal.
 #    Load once, before the loop. Loading and scaling every frame
 #    would repeat work that does not change.
-#
+
 # 5. In the game loop, after the gold highlight rectangle is
 #    drawn, blit crystal at highlight.topleft. The crystal's
 #    faint center should show the gold through it. Drawing the
@@ -116,6 +116,7 @@ def main():
     HIGHLIGHT_COLOR = (176, 132, 64)
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
     pygame.display.set_caption("Pixel Art Exercise")
 
     clock = pygame.time.Clock()

@@ -11,22 +11,22 @@ def load_sprite(path, size):
     # A PNG can store a transparency amount on every pixel.
     # convert_alpha() keeps that transparency and rewrites the
     # pixels into the display's format.
-    #
+
     # The display must already exist. set_mode() chooses the
     # pixel format, and convert_alpha() matches it.
-    #
+
     # Do this once, at load time. A converted sprite can be
     # copied to the screen quickly on every frame.
     loaded = loaded.convert_alpha()
 
     # scale() builds a new Surface at the requested pixel size.
     # The file itself stays small.
-    #
+
     # Pixel art stays blocky and readable when the new size is
     # an integer multiple of the file size. 16 x 16 scaled to
     # 64 x 64 is exactly 4 times on each side, so every source
     # pixel becomes a 4 x 4 block.
-    #
+
     # smoothscale() would blend neighboring pixels. That is
     # useful for photographs and the wrong tool for pixel art.
     return pygame.transform.scale(loaded, (size, size))
@@ -102,6 +102,7 @@ def main():
     LABEL_COLOR = (236, 236, 244)
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
     pygame.display.set_caption("Pixel Art Awakens")
 
     clock = pygame.time.Clock()
@@ -114,17 +115,19 @@ def main():
     # A plain relative path such as "assets/adventurer.png"
     # would only work for one of those two launch folders.
     assets = Path(__file__).parent / "assets"
-    adventurer_path = assets / "adventurer.png"
-    crystal_path = assets / "crystal.png"
+    adventurer_path = assets / "adventurer.jpeg"
+    crystal_path = assets / "crystal.jpeg"
 
     # The same file, prepared two ways, so the transparency
     # difference is visible.
-    #
+
     # convert() produces an opaque Surface. Pixels that were
     # transparent in the PNG become solid black.
     # convert_alpha() keeps those pixels transparent.
     loaded = pygame.image.load(adventurer_path)
+
     opaque_preview = pygame.transform.scale(loaded.convert(), (64, 64))
+
     clear_preview = pygame.transform.scale(
         loaded.convert_alpha(),
         (64, 64),
@@ -175,6 +178,7 @@ def main():
             font.render("convert()", True, LABEL_COLOR),
             (512, 28),
         )
+
         pygame.draw.rect(screen, PANEL_COLOR, opaque_panel)
         screen.blit(opaque_preview, (520, 64))
 
@@ -182,6 +186,7 @@ def main():
             font.render("convert_alpha()", True, LABEL_COLOR),
             (512, 168),
         )
+
         pygame.draw.rect(screen, PANEL_COLOR, clear_panel)
         screen.blit(clear_preview, (520, 204))
 
@@ -189,6 +194,7 @@ def main():
             font.render("16 x 16 file", True, LABEL_COLOR),
             (512, 300),
         )
+
         screen.blit(native_sprite, (640, 300))
 
         pygame.draw.rect(screen, HIGHLIGHT_COLOR, highlight)
