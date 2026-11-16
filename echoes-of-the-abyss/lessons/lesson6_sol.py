@@ -12,16 +12,18 @@ class Player:
 
         # The path starts at this file, not at the folder the
         # program was launched from. Launching from the project
-        # root and launching from lessons/ then find the same PNG.
+        # root and launching from lessons/ then find the same jpeg.
         # convert_alpha() keeps the transparent pixels and matches
         # the display format chosen by set_mode(). The display
         # already exists because main() constructs the player
         # after set_mode(). scale() returns a new Surface, so the
         # 16 x 16 file can be drawn at the body's size. 64 is an
         # even multiple of 16, so each source pixel stays square.
-        image_path = Path(__file__).parent / "assets" / "adventurer.png"
-        loaded = pygame.image.load(image_path).convert_alpha()
-        self.sprite = pygame.transform.scale(loaded, (size, size))
+        image_path = Path(__file__).parent / "assets" / "adventurer.jpeg"
+
+        loaded_img = pygame.image.load(image_path).convert_alpha()
+
+        self.sprite = pygame.transform.scale(loaded_img, (size, size))
 
     def update(self, keys, dt, screen_width, screen_height):
         direction = pygame.Vector2(0, 0)
@@ -99,7 +101,7 @@ def main():
     # between frames, so the loop only needs to copy them.
     # Partial transparency in the center is what lets the gold
     # rectangle show through after the crystal is drawn on top.
-    crystal_path = Path(__file__).parent / "assets" / "crystal.png"
+    crystal_path = Path(__file__).parent / "assets" / "crystal.jpeg"
     crystal = pygame.image.load(crystal_path).convert_alpha()
     crystal = pygame.transform.scale(crystal, (64, 64))
 

@@ -6,18 +6,14 @@ def load_sprite(path, size):
     # pygame.image.load reads a file from disk and returns a Surface.
     # A Surface is the image living in memory. Loading does not
     # draw anything.
-    loaded = pygame.image.load(path)
-
-    # A PNG can store a transparency amount on every pixel.
-    # convert_alpha() keeps that transparency and rewrites the
-    # pixels into the display's format.
+    loaded_img = pygame.image.load(path)
 
     # The display must already exist. set_mode() chooses the
     # pixel format, and convert_alpha() matches it.
 
     # Do this once, at load time. A converted sprite can be
     # copied to the screen quickly on every frame.
-    loaded = loaded.convert_alpha()
+    loaded_img = loaded_img.convert_alpha()
 
     # scale() builds a new Surface at the requested pixel size.
     # The file itself stays small.
@@ -29,7 +25,7 @@ def load_sprite(path, size):
 
     # smoothscale() would blend neighboring pixels. That is
     # useful for photographs and the wrong tool for pixel art.
-    return pygame.transform.scale(loaded, (size, size))
+    return pygame.transform.scale(loaded_img, (size, size))
 
 
 class Player:
@@ -74,7 +70,7 @@ class Player:
             min(screen_height - self.size, self.position.y)
         )
 
-        # blit() will use this top-left corner, so the picture
+        # .blit() will use this top-left corner, so the picture
         # and the rectangle stay on the same pixel.
         self.rect.topleft = (
             round(self.position.x),
@@ -82,7 +78,7 @@ class Player:
         )
 
     def draw(self, surface):
-        # blit copies the sprite onto the destination Surface.
+        # .blit() copies the sprite onto the destination Surface.
         # The second argument is the top-left pixel where the
         # copy begins. Transparent pixels leave the destination
         # unchanged, which is why the colored rectangle can go.
@@ -101,6 +97,10 @@ def main():
     HIGHLIGHT_COLOR = (176, 132, 64)
     LABEL_COLOR = (236, 236, 244)
 
+    # Pygame uses Surface objects to represents images.
+
+    # A Surface is a two-dimensional (width and height) area
+    # of pixels stored in memory.
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
     pygame.display.set_caption("Pixel Art Awakens")
@@ -112,8 +112,11 @@ def main():
     # Building from the script's folder means the images are
     # found when the program is launched from this directory
     # and also when it is launched from the project root.
-    # A plain relative path such as "assets/adventurer.png"
-    # would only work for one of those two launch folders.
+
+    # A simple relative path depends on the folder from which
+    # we run the program. Using __file__ makes the path start
+    # from this Python file's location instead, so the images
+    # can be found regardless of where we launch the program.
     assets = Path(__file__).parent / "assets"
     adventurer_path = assets / "adventurer.jpeg"
     crystal_path = assets / "crystal.jpeg"
@@ -121,21 +124,65 @@ def main():
     # The same file, prepared two ways, so the transparency
     # difference is visible.
 
-    # convert() produces an opaque Surface. Pixels that were
-    # transparent in the PNG become solid black.
-    # convert_alpha() keeps those pixels transparent.
-    loaded = pygame.image.load(adventurer_path)
+    # A Surface object can also be created by loading an image.
 
-    opaque_preview = pygame.transform.scale(loaded.convert(), (64, 64))
+    # To display an image, loading it is not enough.
+    # After its loaded, it must be drawn onto another Surface.
 
+    # Syntax:
+    # loaded_img = pygame.image.load(path)
+
+    # pygame is the library.
+    # image is the module.
+    # load() is the function that loads the image file.
+
+    # path is the location of the image file.
+    # loaded_img is the resulting Surface image.
+    loaded_img = pygame.image.load(adventurer_path)
+
+    # In game development, a sprite is a two-dimensional or 2D
+    # visual represention of a game object.
+    # E.g. Player, enemy, collectible, etc.
+
+    # Sometimes character sprites have an irregular shape like
+    # adventurer.jpeg.
+
+    # .convert() takes a loaded image and creates a new Surface
+    # that uses the same pixel format as the display.
+
+    # .convert() is best for solid rectangular images like backgrounds
+    # because they usually do not need transparency.
+    # Instead, backgrounds usually fill the entire screen.
+
+    # .convert_alpha() takes a loaded image and repacks the image's
+    # pixel information into a format that Pygame can draw without
+    # losing transparency.
+
+    # .convert_alpha() when your image contains transparent areas that
+    # you want to preserve.
+    # E.g. characters, items and anything containing a transparent part.
+
+    # Create a 64 x 64 version of the original adventurer.jpeg
+    # character image without keeping the transparency level
+    # intact.
+
+    # Called opaque_preview because opaque means that something is
+    # not transparent.
+    opaque_preview = pygame.transform.scale(
+        loaded_img.convert(),
+        (64, 64)
+    )
+
+    # clear_preview indicates that the transparent areas of the
+    # original image remain clear. 
     clear_preview = pygame.transform.scale(
-        loaded.convert_alpha(),
+        loaded_img.convert_alpha(),
         (64, 64),
     )
 
     # The file is 16 x 16. Shown at native size, it is a speck.
     # Scaling is what makes it readable in the window.
-    native_sprite = loaded.convert_alpha()
+    native_sprite = loaded_img.convert_alpha()
 
     player = Player(
         x=80,

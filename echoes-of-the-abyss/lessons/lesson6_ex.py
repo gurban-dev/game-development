@@ -2,7 +2,7 @@ import pygame
 # TODO 1:
 # Import Path from pathlib.
 
-# Pixel Art Awakens — 15-minute exercise
+# Pixel Art Awakens
 
 # The arrow keys already move a square, and the square already
 # stays inside the window. That square is a placeholder. Replace
@@ -10,16 +10,16 @@ import pygame
 # gold rectangle.
 
 # Two images are already on disk, beside this file:
-#   assets/adventurer.png   16 x 16, with fully transparent pixels
-#   assets/crystal.png      16 x 16, with partly transparent pixels
+#   assets/adventurer.jpeg   16 x 16, with fully transparent pixels
+#   assets/crystal.jpeg      16 x 16, with partly transparent pixels
 
 # Implement all of the following:
 
 # 1. Import Path from pathlib.
 
 # 2. Inside Player.__init__, after the Rect is created, build a
-#    path to adventurer.png from this file's own location:
-#        Path(__file__).parent / "assets" / "adventurer.png"
+#    path to adventurer.jpeg from this file's own location:
+#        Path(__file__).parent / "assets" / "adventurer.jpeg"
 #    Load it with pygame.image.load.
 #    Call convert_alpha() on the loaded Surface.
 #    Scale the result with pygame.transform.scale to (size, size).
@@ -36,7 +36,7 @@ import pygame
 #    aligned with the rectangle that movement already updates.
 
 # 4. Before the game loop, build the same kind of path for
-#    assets/crystal.png. Load it, call convert_alpha(), and scale
+#    assets/crystal.jpeg. Load it, call convert_alpha(), and scale
 #    it to (64, 64). Store the result in a variable named crystal.
 #    Load once, before the loop. Loading and scaling every frame
 #    would repeat work that does not change.
@@ -57,7 +57,7 @@ class Player:
         self.rect = pygame.Rect(x, y, size, size)
 
         # TODO 2:
-        # Build the path to assets/adventurer.png with Path(__file__).
+        # Build the path to assets/adventurer.jpeg with Path(__file__).
         # Load the image, call convert_alpha(), scale it to
         # (size, size) with pygame.transform.scale, and store the
         # scaled Surface as self.sprite.
@@ -132,7 +132,7 @@ def main():
     highlight = pygame.Rect(300, 250, 96, 96)
 
     # TODO 4:
-    # Build a path to assets/crystal.png with Path(__file__).
+    # Build a path to assets/crystal.jpeg with Path(__file__).
     # Load it, call convert_alpha(), scale it to (64, 64),
     # and store the scaled Surface in a variable named crystal.
     # Do this before the loop.

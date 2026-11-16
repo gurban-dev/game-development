@@ -4,8 +4,13 @@ import pygame
 class Player:
     def __init__(self, x, y, size, color, speed):
         # Each object maintains its own position and properties.
+
+        # Represents the player's position in the form of x, y coordinates.
         self.position = pygame.Vector2(x, y)
+
+        # Player's width and height.
         self.size = size
+
         self.color = color
         self.speed = speed
 
@@ -14,6 +19,8 @@ class Player:
 
     def update(self, keys, dt, screen_width, screen_height):
         # Build a movement vector from the currently pressed keys.
+
+        # Represents the direction the player is moving in.
         direction = pygame.Vector2(0, 0)
 
         if keys[pygame.K_RIGHT]:
