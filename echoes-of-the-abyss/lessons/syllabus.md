@@ -1,5 +1,9 @@
 # Echoes of the Abyss: 36-Lesson Development Roadmap
 
+## Syllabus
+
+[View the complete 36-lesson syllabus on GitHub](https://github.com/gurban-dev/game-development/blob/main/echoes-of-the-abyss/lessons/syllabus.md)
+
 ## Phase 1: Python Foundations and the First Playable Room
 
 **Lessons 1-4:** Establish the development environment and core game loop.
