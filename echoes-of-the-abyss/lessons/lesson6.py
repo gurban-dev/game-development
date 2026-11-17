@@ -140,15 +140,8 @@ def main():
     # loaded_img is the resulting Surface image.
     loaded_img = pygame.image.load(adventurer_path)
 
-    # In game development, a sprite is a two-dimensional or 2D
-    # visual represention of a game object.
-    # E.g. Player, enemy, collectible, etc.
-
-    # Sometimes character sprites have an irregular shape like
-    # adventurer.jpeg.
-
     # .convert() takes a loaded image and creates a new Surface
-    # that uses the same pixel format as the display.
+    # object that uses the same pixel format as the display.
 
     # .convert() is best for solid rectangular images like backgrounds
     # because they usually do not need transparency.
@@ -158,9 +151,18 @@ def main():
     # pixel information into a format that Pygame can draw without
     # losing transparency.
 
-    # .convert_alpha() when your image contains transparent areas that
-    # you want to preserve.
+    # Use .convert_alpha() when your image contains transparent areas
+    # that you want to preserve.
     # E.g. characters, items and anything containing a transparent part.
+
+    # See convert_vs_convert_alpha.png.
+
+    # In game development, a sprite is a two-dimensional or 2D
+    # visual represention of a game object.
+    # E.g. Player, enemy, collectible, etc.
+
+    # Sometimes character sprites have an irregular shape like
+    # adventurer.jpeg.
 
     # Create a 64 x 64 version of the original adventurer.jpeg
     # character image without keeping the transparency level
