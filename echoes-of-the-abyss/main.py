@@ -1,5 +1,5 @@
 import pygame
-from player import Player
+from lessons.player import Player
 from pathlib import Path
 
 from world import World
