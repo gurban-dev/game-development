@@ -42,8 +42,9 @@ def make_alpha_example(size):
     # However, with pygame.SRCALPHA we can also create a Surface that
     # stores transparency information for every individual pixel.
 
-    # pygame.SRCALPHA allows the Surface to store per-pixel alpha
-    # information.
+    # pygame.SRCALPHA is a constant makes it possible to create a
+    # Surface capable of storing transparency information for its
+    # pixels.
     transparent_layer = pygame.Surface(size, pygame.SRCALPHA)
 
     # Alpha is a value that determines the transparency or opacity of
@@ -100,6 +101,8 @@ def draw_panel(surface, color, rect, border_radius=8):
 def draw_scaled_image(surface, image, size, position):
     scaled_image = pygame.transform.scale(image, size)
 
+    # .blit() takes a Surface that is passed to it as an argument
+    # and places it on the Surface object it is being invoked on.
     surface.blit(scaled_image, position)
 
 
@@ -138,7 +141,7 @@ def move_player(player_rect, speed, dt, screen):
     # • width = 900
     # • height = 600
 
-    # clamp_ip() ensures that player_rect stays entirely within the
+    # .clamp_ip() ensures that player_rect stays entirely within the
     # boundaries of the screen rectangle.
 
     # For example:

@@ -100,12 +100,16 @@ def main():
         # Build the movement vector from the arrow keys.
         keys = pygame.key.get_pressed()
         movement = pygame.Vector2(0, 0)
+    
         if keys[pygame.K_RIGHT]:
             movement.x += 1
+
         if keys[pygame.K_LEFT]:
             movement.x -= 1
+
         if keys[pygame.K_DOWN]:
             movement.y += 1
+
         if keys[pygame.K_UP]:
             movement.y -= 1
 

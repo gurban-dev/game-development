@@ -125,6 +125,7 @@ def main():
         screen.blit(crystal, highlight.topleft)
 
         player.draw(screen)
+
         pygame.display.flip()
 
     pygame.quit()
