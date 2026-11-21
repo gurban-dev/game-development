@@ -12,18 +12,24 @@ import pygame
 
 # Complete every TODO below:
 # 1. Import Path.
+
 # 2. Finish load_scaled_image(): load the file, call convert_alpha(), and
 #    return pygame.transform.scale(...) using the requested size.
+
 # 3. Finish make_alpha_example(): make a Surface with SRCALPHA, draw a
 #    partially transparent circle in its center, and return the Surface.
+
 # 4. After the display is created, build the adventurer path from
 #    Path(__file__).parent / "assets" / "adventurer.jpeg". Load and scale the
 #    sprite to (96, 78), then create its Rect at (70, 360). Do this before the
 #    loop; image loading and scaling do not belong in the frame loop.
+
 # 5. Before the loop, call make_alpha_example((100, 100)) and save the result.
+
 # 6. In the drawing section, after drawing the alpha panel, blit the alpha
 #    Surface at alpha_panel.topleft. Draw the panel first so the clear corners
 #    reveal its color and the semi-transparent circle blends with it.
+
 # 7. Blit the player sprite at player_rect.topleft after drawing the floor.
 
 # Useful details:

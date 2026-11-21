@@ -41,6 +41,9 @@ def make_alpha_example(size):
     # When we create a Pygame Surface, we work with its color information.
     # However, with pygame.SRCALPHA we can also create a Surface that
     # stores transparency information for every individual pixel.
+
+    # pygame.SRCALPHA allows the Surface to store per-pixel alpha
+    # information.
     transparent_layer = pygame.Surface(size, pygame.SRCALPHA)
 
     # Alpha is a value that determines the transparency or opacity of
@@ -48,6 +51,16 @@ def make_alpha_example(size):
 
     # The untouched corners have alpha 0 and reveal the scene underneath.
     # The center circle has partial alpha, so the background blends through.
+
+    # Red: 105 Green: 225 Blue: 255 Alpha: 150
+    # (105, 225, 255, 150)
+
+    # The alpha value determines the transparency of the pixel.
+
+    # Alpha values:
+    # 0	    Completely transparent
+    # 150	Partially transparent
+    # 255	Completely opaque
     pygame.draw.circle(
         transparent_layer,
         (105, 225, 255, 150),
@@ -76,6 +89,7 @@ def make_alpha_example(size):
 def draw_label(surface, font, text, position, color=(238, 240, 250)):
     # Text is also a Surface, so it is drawn with the same blit operation.
     rendered_text = font.render(text, True, color)
+
     surface.blit(rendered_text, position)
 
 
@@ -150,6 +164,8 @@ def draw_alpha_demo(screen, font, alpha_demo, panel_color):
 
     draw_panel(screen, panel_color, panel)
 
+    # The colored panel is drawn first, allowing us to see it through
+    # the transparent areas of alpha_demo.
     screen.blit(alpha_demo, panel.topleft)
 
     draw_label(screen, font, "clear corners; blended circle", (650, 362))
@@ -176,6 +192,7 @@ def main():
     original_image = pygame.image.load(adventurer_path)
 
     # Convert the original Surface for display without per-pixel alpha.
+    # That is, without preserving per-pixel alpha transparency.
 
     # Opaque means that a pixel is completely visible and does not allow
     # the background behind it to show through it.
@@ -209,6 +226,8 @@ def main():
     # JPEG images do not support transparency. Therefore, we create a new
     # Surface in memory to demonstrate how transparent and partially
     # transparent pixels work.
+
+    # Consequently, both converted images look the same.
     alpha_demo = make_alpha_example((100, 100))
 
     # Separate panels give blit() a colored destination that remains visible
