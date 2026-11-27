@@ -145,46 +145,66 @@ members.”
 ### 18–23 minutes: Introduce `pygame.sprite.Group`
 
 `pygame.sprite` is the same Pygame section we just looked at, and `Group`,
-with a capital G, is its container class. After `main.py` creates the
-player, we put it in a group like this:”
+with a capital G, is its container class. In our project, the group starts
+with one object, the player:
 
 ```python
 all_sprites = pygame.sprite.Group(player)
 ```
 
-A Group is like a list designed to hold sprites. It can call the same method
-on every sprite it contains. Here is the update call we will use:”
+To see why a Group is useful when there is more than one sprite, imagine
+adding an enemy. This small `Enemy` class also inherits from Sprite, and its
+`update()` accepts the same information as `Player.update()`. We use the
+player image temporarily for this example, so it does not require a new
+asset:
+
+```python
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self, image_path, x, y, size):
+        super().__init__()
+        loaded_image = pygame.image.load(image_path).convert_alpha()
+        self.image = pygame.transform.scale(loaded_image, (size, size))
+        self.rect = self.image.get_rect(topleft=(x, y))
+
+    def update(self, keys, dt, screen_width, screen_height, walls):
+        # This example enemy stays still; its method is here to show the call.
+        pass
+
+enemy = Enemy(adventurer_path, 500, 100, PLAYER_SIZE)
+all_sprites = pygame.sprite.Group(player, enemy)
+```
+
+In this example, replace the earlier one-object Group line with the final
+line above. We create the enemy first, then place both objects in the group.
+
+Now the group contains two separate objects: the Player and the Enemy. They
+are different kinds of sprite, but both have an `image`, a `rect`, and an
+`update()` method. In a real game, the enemy would have its own picture and
+its update method would contain enemy behavior.
+
+Each frame, `main.py` can update both objects with one call:
 
 ```python
 all_sprites.update(keys, dt, WIDTH, HEIGHT, world.walls)
 ```
 
-The values in parentheses are passed along to every sprite's `update()`
-method. In this project they are the pressed keys, time since the last frame,
-screen width and height, and wall rectangles. Our Player's `update()` method
-already accepts those five values.
-
-To make “every sprite” concrete, imagine the group contains the Player and
-an Enemy. This group call:”
+Pygame passes those five values to each member's `update()` method. In this
+example, that is equivalent to writing:
 
 ```python
-all_sprites.update(keys, dt, WIDTH, HEIGHT, world.walls)
+player.update(keys, dt, WIDTH, HEIGHT, world.walls)
+enemy.update(keys, dt, WIDTH, HEIGHT, world.walls)
 ```
 
-does the same job as this loop written by hand:
+The Group does not make the Player and Enemy perform the same behavior. It
+calls a method named `update()` on each object. The Player's method moves the
+player and checks walls; the Enemy's method is currently `pass`, so the
+example enemy stays still. If we add more objects with compatible update
+methods, the same group call updates each one without adding another line to
+`main.py` for every sprite.
 
-```python
-for sprite in all_sprites:
-    sprite.update(keys, dt, WIDTH, HEIGHT, world.walls)
-```
-
-With just the Player, the group calls `Player.update()` once. If we later
-add an Enemy whose `update()` accepts the same information, the group calls
-`Enemy.update()` too. Then `main.py` can update the whole group instead of
-adding a separate update line for every object.
-
-The group can also draw its members. We keep the world first, then draw the
-group:”
+The group can also draw both images. We keep the world first, then draw the
+group:
 
 ```python
 screen.fill(BACKGROUND_COLOR)
@@ -193,9 +213,9 @@ all_sprites.draw(screen)
 ```
 
 `Group.draw()` goes through the sprites and draws each one's `image` at its
-`rect` position. Here it draws the Player image. If an Enemy is added to this
-group, it draws that image too. We draw the World first, then the Group, so
-the sprite images appear over the walls and floor.
+`rect` position. With the two objects above, it draws the Player and Enemy.
+We draw the World first, then the Group, so the sprite images appear over
+the walls and floor.
 
 So Sprite and Group give game objects a shared way to join a collection,
 receive updates, and be drawn. They do not decide how an object moves, and
