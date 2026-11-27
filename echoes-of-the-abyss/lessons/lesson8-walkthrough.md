@@ -93,14 +93,27 @@ That function groups the image-loading steps under one name. Here,
 `Player.update()` and `Player.draw()` are methods that give the player's
 movement and drawing their own named places.
 
-### 10–18 minutes: Teach `pygame.sprite.Sprite` and `Group`
+### 10–18 minutes: Introduce `pygame.sprite.Sprite`
 
-A Pygame Sprite is a game object that can be managed by sprite groups. For
-a group to draw a sprite, it looks for two standard attributes: `image`, the
-picture to draw, and `rect`, the rectangle that gives its position. Our
-Player already has an image stored as `self.sprite` and a collision
-rectangle stored as `self.rect`. We will rename the image attribute to
-`self.image` so the group can find it.
+The name `pygame.sprite.Sprite` has three parts. `pygame` is the Pygame
+package we imported. `sprite` is a section of Pygame that contains tools for
+managing game objects. `Sprite`, with a capital S, is a class in that
+section. Our `Player` class can inherit from it so Pygame recognizes each
+Player object as a sprite that can belong to a sprite group.
+
+We can draw the player without this feature, and our current code already
+does that. We are introducing Sprite because games usually grow to include
+more objects, such as enemies, pickups, or projectiles. Sprite and Group give
+those objects a shared way to be collected and drawn. With one player, the
+benefit is mostly learning and preparing a consistent structure for when we
+add more objects.”
+
+For a group to draw a sprite, it expects two attributes with these names:
+`image`, the picture to show, and `rect`, the rectangle that says where to
+show it. Our Player already has the picture in `self.sprite` and its
+collision rectangle in `self.rect`. We will call the picture `self.image`
+so the group can find it. The existing `rect` can keep serving both drawing
+and collision.”
 
 In `player.py`, the class declaration and setup will look like this:
 
@@ -117,37 +130,61 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=(x, y))
 ```
 
-`super().__init__()` runs the setup for the Pygame Sprite class that Player
-is building on. `get_rect()` makes a rectangle the same size as the image
-and places it at the starting location. We keep that rectangle because
-`Player.update()` uses it to stay inside the screen and to check whether the
-player overlaps a wall. The Group will use that same rectangle to position
-the image.
+`super().__init__()` runs the setup code from Pygame's Sprite class. We do
+that so the Player is ready to be added to a Group. `get_rect()` makes a
+rectangle the same size as the image and puts it at the starting location.
+We keep the rectangle because `Player.update()` uses it to keep the player
+inside the screen and check whether it overlaps a wall. The Group uses that
+same rectangle to position the image.”
 
-Making Player inherit from Sprite does not give it wall collision. The
-collision behavior stays in our existing `Player.update()` method. Sprite
-gives us a standard way to group and draw game objects.
+Sprite does not add wall collision for us. The collision behavior stays in
+our existing `Player.update()` method. Sprite gives Pygame a standard way to
+recognize and group the Player; the Group can then update and draw its
+members.”
 
-### 18–23 minutes: Trace the group in main.py
+### 18–23 minutes: Introduce `pygame.sprite.Group`
 
-After `main.py` creates the player, we’ll put it in a group like this:
+`pygame.sprite` is the same Pygame section we just looked at, and `Group`,
+with a capital G, is its container class. After `main.py` creates the
+player, we put it in a group like this:”
 
 ```python
 all_sprites = pygame.sprite.Group(player)
 ```
 
-A Group is a container for sprites. `all_sprites.update(...)` calls each
-member's `update()` method with the arguments we provide. Our Player update
-method already takes these arguments, so the group can forward the keyboard
-state, elapsed time, screen size, and wall rectangles. In each frame, the
-group passes the same keys, elapsed time, screen dimensions, and wall
-rectangles that `Player.update()` already uses:
+A Group is like a list designed to hold sprites. It can call the same method
+on every sprite it contains. Here is the update call we will use:”
 
 ```python
 all_sprites.update(keys, dt, WIDTH, HEIGHT, world.walls)
 ```
 
-For drawing, we keep the world first, then draw the group:
+The values in parentheses are passed along to every sprite's `update()`
+method. In this project they are the pressed keys, time since the last frame,
+screen width and height, and wall rectangles. Our Player's `update()` method
+already accepts those five values.
+
+To make “every sprite” concrete, imagine the group contains the Player and
+an Enemy. This group call:”
+
+```python
+all_sprites.update(keys, dt, WIDTH, HEIGHT, world.walls)
+```
+
+does the same job as this loop written by hand:
+
+```python
+for sprite in all_sprites:
+    sprite.update(keys, dt, WIDTH, HEIGHT, world.walls)
+```
+
+With just the Player, the group calls `Player.update()` once. If we later
+add an Enemy whose `update()` accepts the same information, the group calls
+`Enemy.update()` too. Then `main.py` can update the whole group instead of
+adding a separate update line for every object.
+
+The group can also draw its members. We keep the world first, then draw the
+group:”
 
 ```python
 screen.fill(BACKGROUND_COLOR)
@@ -155,10 +192,15 @@ world.draw(screen)
 all_sprites.draw(screen)
 ```
 
-`Group.draw()` looks at each Sprite's `image` and `rect` to draw it in the
-right place. We draw the World first, then the Group, so the player appears
-over the walls and floor. There is only one sprite in the group right now,
-but this same group can hold more characters or objects later.
+`Group.draw()` goes through the sprites and draws each one's `image` at its
+`rect` position. Here it draws the Player image. If an Enemy is added to this
+group, it draws that image too. We draw the World first, then the Group, so
+the sprite images appear over the walls and floor.
+
+So Sprite and Group give game objects a shared way to join a collection,
+receive updates, and be drawn. They do not decide how an object moves, and
+they do not automatically make objects collide. The Player's movement and
+wall checks remain in `Player.update()`.”
 
 ### 23–26 minutes: Explain the Git checkpoint
 
