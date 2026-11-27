@@ -39,10 +39,6 @@ already have a clear home here. The player still uses those rectangles when
 checking for collisions. The relevant methods are `World.__init__()`, which
 sets up `self.walls`, and `World.draw(screen)`, which draws them.”
 
-“`update.py` is a set of presenter notes explaining the project changes. The
-game does not import it; `main.py`, `player.py`, and `world.py` make up the
-running game code.”
-
 “The main changes in `main.py` connect the image setup to the rest of the
 game. It creates the display before creating the Player, because the Player
 loads and prepares its image during setup. It builds the image path from the
