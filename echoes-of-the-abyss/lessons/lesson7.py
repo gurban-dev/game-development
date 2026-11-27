@@ -15,6 +15,9 @@ SCREEN_HEIGHT = 600
 # 3. Transparency
 #    • Create and display transparent Surfaces.
 
+# Image processing pipeline:
+# load -> convert -> scale -> blit
+
 
 def load_scaled_image(path, size):
     # image.load() reads image data into a Surface; it does not put it

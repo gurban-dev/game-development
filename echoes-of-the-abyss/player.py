@@ -3,13 +3,13 @@ import pygame
 
 class Player:
     def __init__(self, x, y, size, speed, image_path):
-        # Keep floating-point movement separate from the integer collision Rect.
+        # Track movement and keep a rectangle for wall checks and drawing.
         self.position = pygame.Vector2(x, y)
         self.size = size
         self.speed = speed
         self.rect = pygame.Rect(x, y, size, size)
 
-        # Keep image transparency and prepare the pixel art once for drawing.
+        # Prepare the image once; convert_alpha keeps any transparency in it.
         loaded_image = pygame.image.load(image_path).convert_alpha()
         self.sprite = pygame.transform.scale(loaded_image, (size, size))
 
@@ -58,6 +58,6 @@ class Player:
         self.rect.topleft = (round(self.position.x), round(self.position.y))
 
     def draw(self, surface):
-        # The sprite shares the collision Rect's position; alpha reveals
-        # the world.
+        # Draw the picture at the same top-left location as the collision box.
+        # Transparent source pixels reveal whatever was drawn underneath.
         surface.blit(self.sprite, self.rect.topleft)
