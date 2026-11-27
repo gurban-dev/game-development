@@ -7,18 +7,16 @@
 - **Main project change:** Convert `Player` into a `pygame.sprite.Sprite` and
   manage it through a `pygame.sprite.Group`.
 
-This lesson focuses the project work on one refactor that demonstrates
-modules, imports, methods, responsibilities, and the Pygame sprite system.
-The project already has separate `main.py`, `player.py`, and `world.py`
-modules, so do not split it into more files just to practice file creation.
-The learner will preserve movement and wall collision, then commit the
-working milestone.
+“We’re going to use the project structure that is already here and make one
+focused change: we’ll connect the Player to Pygame’s Sprite and Group system.
+As we do that, we’ll look at how the files import and use one another, and
+why each file has a particular job. We’ll keep the player’s movement and wall
+collision working, then save the finished change as a Git checkpoint.”
 
-The 15-minute implementation does **not** move all of `main.py` into a new
-`main()` function. Explain what functions and methods do using the existing
-code. Making startup import-safe is a useful later refactor, but combining it
-with the Sprite conversion would make this project task too large for the
-allotted time.
+“We’ll also look at functions and methods in the code that is already here.
+We won’t move the whole game loop into a new `main()` function today. That
+could be a useful separate refactor, but our project time is for the Sprite
+and Group change.”
 
 ## What the learner should understand
 
@@ -27,8 +25,10 @@ By the end of the teaching portion, the learner should be able to explain:
 - A Python file is a module, and imports let one module use names defined in
   another.
 - A function names a task; a method is a function that belongs to a class.
-- Each project module has a responsibility: `main.py` coordinates,
-  `player.py` owns the player, and `world.py` owns walls.
+- Each project module has a clear job: `main.py` creates the display and
+  game objects, handles the frame loop, and chooses the drawing order;
+  `player.py` defines the player's image, movement, and collision behavior;
+  `world.py` stores the wall rectangles and draws them.
 - A `pygame.sprite.Sprite` exposes an `image` and a `rect` for a
   `pygame.sprite.Group` to draw.
 - A sprite group does not automatically handle wall collision.
@@ -38,35 +38,36 @@ By the end of the teaching portion, the learner should be able to explain:
 
 ### 0–5 minutes: Map the project
 
-Open the project tree and say:
+Let’s start with the project files. A module is a Python file that contains
+code the rest of the program can use. We already have separate modules for
+the game loop, the player, and the world.
 
-“We already have a useful module structure. A module is a Python file that
-contains code we can define and use. `main.py` starts and coordinates the
-game. `player.py` defines the player. `world.py` defines the walls and draws
-them. `update.py` contains presenter notes; the game does not import it, so
-it is not part of the running game.”
+`main.py` creates the display, creates the Player and World objects, handles
+keyboard and window events, tells the player when to update, and decides what
+to draw and in what order. `player.py` defines the Player: its image, its
+movement, and the rectangle used to keep it inside the screen and check it
+against walls. `world.py` stores the wall rectangles and draws those walls.
+That is why we’ll make the Sprite changes in `player.py` and `main.py`; the
+wall setup in `world.py` already has its own clear place.
 
-Point to these lines in `main.py`:
+Here in `main.py`, these imports bring the Player and World class names into
+this file:
 
 ```python
 from player import Player
 from world import World
 ```
 
-Say:
-
-“These imports make the `Player` and `World` names available here. Their
-class definitions stay in their own files, so `main.py` can create and
-coordinate the objects without containing every detail of their behavior.”
-
-Ask the learner to find `Player.__init__()`, `Player.update()`,
-`Player.draw()`, `World.__init__()`, and `World.draw()`. Explain that these
-are methods: functions attached to a class. The main loop calls methods on
-the objects it created.
+The definitions stay in `player.py` and `world.py`. The imports let `main.py`
+create those objects and call their methods without putting all their code
+in one file. A function is a named set of instructions. When a function
+belongs to a class, we call it a method. For example, `Player.update()` moves
+the player, `Player.draw()` draws the player image, and `World.draw()` draws
+the walls. The main loop calls these methods at the right time in each frame.
 
 ### 5–10 minutes: Explain responsibility and refactoring
 
-Trace the current frame in `main.py`:
+Let’s follow one frame in `main.py`:
 
 ```python
 player.update(keys, dt, WIDTH, HEIGHT, world.walls)
@@ -76,31 +77,32 @@ player.draw(screen)
 pygame.display.flip()
 ```
 
-Say:
+`main.py` reads the keyboard and measures how much time has passed. It passes
+the keys and time to `Player.update()`, which changes the player's location
+and checks the wall rectangles supplied by `World`. Then `main.py` clears
+the screen, asks `World.draw()` to draw the walls, asks `Player.draw()` to
+draw the player, and updates the display.
 
-“`main.py` gathers input and time, then delegates player behavior to the
-Player and wall drawing to the World. Refactoring means changing the
-organization of code to make responsibilities clearer or to support the
-next feature. We are not moving code into extra files today. We are changing
-how the existing Player connects to Pygame's sprite system.”
+This is an example of each file doing a particular job. Refactoring means
+reorganizing code to make those jobs clearer or to support a new feature. We
+already have the Player and World in their own files. Today we’ll keep that
+structure and change how Pygame can manage and draw the Player.
 
-Point out that `lesson7.py` also uses functions such as
-`load_scaled_image()` and `draw_alpha_demo()` to give a named piece of work a
-clear place. In this project, `Player.update()` and `Player.draw()` already
-separate player behavior from the main loop.
+In Lesson 7, we also saw named functions such as `load_scaled_image()`.
+That function groups the image-loading steps under one name. Here,
+`Player.update()` and `Player.draw()` are methods that give the player's
+movement and drawing their own named places.
 
 ### 10–18 minutes: Teach `pygame.sprite.Sprite` and `Group`
 
-Say:
-
-“A Pygame Sprite is a game object that can be managed by sprite groups. For
+A Pygame Sprite is a game object that can be managed by sprite groups. For
 a group to draw a sprite, it looks for two standard attributes: `image`, the
 picture to draw, and `rect`, the rectangle that gives its position. Our
 Player already has an image stored as `self.sprite` and a collision
 rectangle stored as `self.rect`. We will rename the image attribute to
-`self.image` so the group can find it.”
+`self.image` so the group can find it.
 
-Show this target shape for `player.py`:
+In `player.py`, the class declaration and setup will look like this:
 
 ```python
 class Player(pygame.sprite.Sprite):
@@ -115,41 +117,37 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=(x, y))
 ```
 
-Explain `super().__init__()` as the setup call for the Sprite base class.
-The `get_rect()` call creates a rectangle matching the image dimensions and
-places it at the starting position. Keeping the rectangle is important:
-the current `Player.update()` uses it for screen limits and
-`colliderect()` wall checks. The sprite group will also use it to position
+`super().__init__()` runs the setup for the Pygame Sprite class that Player
+is building on. `get_rect()` makes a rectangle the same size as the image
+and places it at the starting location. We keep that rectangle because
+`Player.update()` uses it to stay inside the screen and to check whether the
+player overlaps a wall. The Group will use that same rectangle to position
 the image.
 
-Say:
-
-“Making Player inherit from Sprite does not give it wall collision. The
+Making Player inherit from Sprite does not give it wall collision. The
 collision behavior stays in our existing `Player.update()` method. Sprite
-gives us a standard way to group and draw game objects.”
+gives us a standard way to group and draw game objects.
 
 ### 18–23 minutes: Trace the group in main.py
 
-Explain that after creating `player`, `main.py` will create a group:
+After `main.py` creates the player, we’ll put it in a group like this:
 
 ```python
 all_sprites = pygame.sprite.Group(player)
 ```
 
-Say:
-
-“A Group is a container for sprites. `all_sprites.update(...)` calls each
+A Group is a container for sprites. `all_sprites.update(...)` calls each
 member's `update()` method with the arguments we provide. Our Player update
 method already takes these arguments, so the group can forward the keyboard
-state, elapsed time, screen size, and wall rectangles.”
-
-Show the update call:
+state, elapsed time, screen size, and wall rectangles. In each frame, the
+group passes the same keys, elapsed time, screen dimensions, and wall
+rectangles that `Player.update()` already uses:
 
 ```python
 all_sprites.update(keys, dt, WIDTH, HEIGHT, world.walls)
 ```
 
-Then show the drawing calls:
+For drawing, we keep the world first, then draw the group:
 
 ```python
 screen.fill(BACKGROUND_COLOR)
@@ -157,46 +155,42 @@ world.draw(screen)
 all_sprites.draw(screen)
 ```
 
-Explain that `Group.draw()` uses each sprite's `image` and `rect`. The World
-remains separate and is drawn first, so the player is drawn over the world.
-For this lesson there is only one sprite, but the same calls can manage more
-sprites later.
+`Group.draw()` looks at each Sprite's `image` and `rect` to draw it in the
+right place. We draw the World first, then the Group, so the player appears
+over the walls and floor. There is only one sprite in the group right now,
+but this same group can hold more characters or objects later.
 
 ### 23–26 minutes: Explain the Git checkpoint
 
-Say:
-
-“Git keeps named checkpoints of changes. We will inspect the current state,
+Git keeps named checkpoints of changes. We will inspect the current state,
 make one focused refactor, review exactly what is staged, and commit the
 working result. A commit records staged changes; it does not automatically
-include every file in the folder.”
+include every file in the folder.
 
-Show the commands, but do not commit before the learner has made and reviewed
-the changes:
+Before we make changes, these commands show the current state:
 
 ```bash
 git status --short
 git diff -- main.py player.py world.py
 ```
 
-Explain that `status` shows changed and untracked files, while `diff` shows
-changes to tracked files. If the project already has unrelated changes,
-identify them before choosing what belongs in this checkpoint.
+`git status` tells us which files have changed and which are new.
+`git diff` shows edits to tracked files. If there are other changes in the
+project, we’ll look at them before deciding what belongs in this checkpoint.
 
 ### 26–30 minutes: Preview the implementation
 
-Say:
-
-“In the implementation time, we will make a small set of connected edits.
+In the implementation time, we will make a small set of connected edits.
 In `player.py`, Player will inherit from Sprite, the image will be named
 `self.image`, and the existing rectangle will keep handling collision. In
 `main.py`, we will put the player in a Group, update it through the Group,
 and use the Group to draw it. We will leave `world.py` alone. Then we will
-run the game, review the diff, stage only these project files, and commit.”
+run the game, review the diff, stage only these project files, and commit.
 
-Ask the learner to repeat the roles: Which file owns the player? Which file
-owns walls? Which file coordinates a frame? Answer together if needed:
-`player.py`, `world.py`, and `main.py` respectively.
+Before we start, tell me which file defines the player's movement and
+collision behavior, which file stores and draws the walls, and which file
+handles input and decides the order of updates and drawing. The answers are
+`player.py`, `world.py`, and `main.py`.
 
 ## Project implementation: 15 minutes
 
