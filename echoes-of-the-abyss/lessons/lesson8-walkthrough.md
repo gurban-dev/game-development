@@ -236,9 +236,21 @@ git status --short
 git diff -- main.py player.py world.py
 ```
 
-`git status` tells us which files have changed and which are new.
-`git diff` shows edits to tracked files. If there are other changes in the
-project, we’ll look at them before deciding what belongs in this checkpoint.
+`git status --short` gives a compact list of changed files. It also marks
+files Git has not been asked to track yet. Git tracks a file after it has
+been added to Git's record. `git diff` shows changes to tracked files that
+have not been staged yet. It does not show the contents of untracked files.
+
+“In `git diff -- main.py player.py world.py`, spaces separate each part of
+the command. The two hyphens are a separator between the command's options
+and the file paths that follow. They are not part of a filename. `main.py`,
+`player.py`, and `world.py` tell Git to show unstaged changes only in those
+three files. If we leave the filenames off, `git diff` checks all tracked
+files in the current project folder. If a file is new and untracked, we use
+`git status` to see that it exists; `git diff` will not show its contents.”
+
+If there are other changes in the project, we’ll look at them before
+deciding what belongs in this checkpoint.
 
 ### 26–30 minutes: Preview the implementation
 
